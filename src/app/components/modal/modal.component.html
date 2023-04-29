@@ -1,0 +1,72 @@
+<div    (animationend)="handleAnimationEnd($event)"
+    [class]="{
+        'layer': true,
+        'animate__animated': true,
+        'animate__fadeOut': hidden,
+        'd-none': displayNone
+    }">
+    <div
+        [class]="{ 
+            '_modal': true, 
+            'animate__animated': true,
+            'animate__fadeInDown': !hidden,
+            'animate__fadeOutDown': hidden
+        }"
+        [style.maxWidth]="maxWidth"
+    >
+        <fa-icon
+            [icon]="faXmark"
+            class="xMark-icon"
+            (click)="closeModal($event)"
+        ></fa-icon>
+        <div class="_modal__header">
+            <h3 class="_modal__title">{{ title }}</h3>
+        </div>
+        <div class="_modal__body">
+            <ng-content></ng-content>
+        </div>
+        <div class="_modal__foot">
+            <ng-content select="[foot]"></ng-content>
+        </div>
+    </div>
+</div>
+
+<style>
+    .layer {
+        left: 0;
+        top: 0;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background: #00000099;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        animation-duration: 250ms;
+    }
+
+    ._modal {
+        position: relative;
+        background: var(--bg);
+        min-width: 300px;
+        border-radius: 15px;
+        padding: 1em 1em;
+        animation-duration: 500ms;
+    }
+
+    .xMark-icon {
+        position: absolute;
+        font-size: 1.8em;
+        right: 14px;
+        top: 2px;
+        color: var(--primary);
+        transition: all 200ms;
+    }
+
+    .xMark-icon:hover {
+        transform: scale(1.1) rotate(90deg);
+        color: #FF004D;
+    }
+
+</style>

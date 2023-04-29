@@ -1,0 +1,21 @@
+<app-section-header title="Educación" float="right"></app-section-header>
+<div class="container text-end d-flex flex-column align-items-end">
+    <div class="education-list">
+        <app-education-item *ngFor="let item of educations; index as i"
+        [institute]="item.name"
+        [description]="item.description"
+        [periodFrom]="item.periodFrom"
+        [periodTo]="item.periodAt"></app-education-item>
+    </div>
+</div>
+
+<style>
+.education-list {
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+    gap: 2.25em;
+    margin-top: 4em;
+    margin-bottom: calc(4em + 15px);
+}
+</style>

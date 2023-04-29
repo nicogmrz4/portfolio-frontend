@@ -1,0 +1,17 @@
+._btn {
+    outline: none;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 8px;
+    border-radius: 8px;
+    transition: transform 200ms;
+}
+
+._btn:hover {
+    transform: translateY(-3px) translateX(3px);
+}
+
+._btn--danger {
+    background-color: #FF004D;
+}

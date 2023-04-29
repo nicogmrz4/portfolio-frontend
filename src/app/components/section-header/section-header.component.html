@@ -1,0 +1,75 @@
+<div class="section-header">
+    <div *ngIf="float == ''">
+        <div class="container py-4">
+            <h2 class="h1 fw-semibold section-header__h1">{{ title }}</h2>
+        </div>
+    </div>
+    <div *ngIf="float == 'right'">
+        <div class="container py-4 d-flex justify-content-end">
+            <h2 class="h1 fw-semibold section-header__h1">{{ title }}</h2>
+        </div>
+    </div>
+    <div *ngIf="float == 'center'">
+        <div class="container py-4 d-flex justify-content-center">
+            <h2 class="h1 fw-semibold section-header__h1">{{ title }}</h2>
+        </div>
+    </div>
+</div>
+
+<style>
+    .section-header {
+        background: var(--header-bg-color);
+        color: var(--text-primary);
+        background-size: 150% 150%;
+
+        -webkit-animation: AnimationName 15s ease infinite;
+        -moz-animation: AnimationName 15s ease infinite;
+        -o-animation: AnimationName 15s ease infinite;
+        animation: AnimationName 15s ease infinite;
+    }
+
+    @-webkit-keyframes AnimationName {
+        0% {
+            background-position: 0% 92%;
+        }
+        50% {
+            background-position: 100% 9%;
+        }
+        100% {
+            background-position: 0% 92%;
+        }
+    }
+    @-moz-keyframes AnimationName {
+        0% {
+            background-position: 0% 92%;
+        }
+        50% {
+            background-position: 100% 9%;
+        }
+        100% {
+            background-position: 0% 92%;
+        }
+    }
+    @-o-keyframes AnimationName {
+        0% {
+            background-position: 0% 92%;
+        }
+        50% {
+            background-position: 100% 9%;
+        }
+        100% {
+            background-position: 0% 92%;
+        }
+    }
+    @keyframes AnimationName {
+        0% {
+            background-position: 0% 92%;
+        }
+        50% {
+            background-position: 100% 9%;
+        }
+        100% {
+            background-position: 0% 92%;
+        }
+    }
+</style>

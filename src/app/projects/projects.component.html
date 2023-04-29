@@ -1,0 +1,26 @@
+<app-section-header title="Proyectos"></app-section-header>
+<div class="container">
+    <div class="projects">
+        <app-project-item *ngFor="let item of projects; index as i"
+            [name]="item.title"
+            [description]="item.description"
+            [image]="item.image"
+            [date]="item.created_at"
+        ></app-project-item>
+
+        <code>
+            {{ projects | json }}
+         </code>
+    </div>
+</div>
+
+<style>
+    .projects {
+        display: grid;
+        grid-template-columns: repeat(3, 300px);
+        gap: 3em;
+        place-items: start;
+        justify-content: center;
+        margin: 4em 0;
+    }
+</style>

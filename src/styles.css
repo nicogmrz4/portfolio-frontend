@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~animate.css/animate.min.css';
+
+:root {
+    --primary: #2196F3;
+    --secondary: #023E8A;
+    --bg: #051D40;
+    --text-primary: white;
+    --header-bg-color: linear-gradient(115deg, #f97794, #6200ff, #3498db);
+    --header-text-color: #1E88E5;
+}
+
+body {
+    background: var(--bg)!important;
+}
+
+h1 h2, h3, h4, h5, h6 { 
+    color: var(--primary);
+}
+
+p {
+    color: #BBDEFB;
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.5em;
+
+}
+
+.bg-primary {
+    background: var(--secondary)!important;
+}
+
+.text-muted {
+    color: #0096C7!important;
+    font-size: .9em;
+}
+
+.section-header__h1 {
+    color: #fff;
+}
