@@ -1,0 +1,36 @@
+.input {
+    height: 50px;
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid rgba(30, 136, 229, 0.4);
+    padding: 0 1em;
+    border-radius: 3px;
+    font-size: 1.1em;
+    width: 350px;
+    margin-top: 1.5em;
+}
+
+.input::placeholder {
+    color: transparent;
+}
+
+.input:focus {
+    box-shadow: inset 0 0 1px 1px var(--primary);
+    outline: none;
+}
+
+.label {
+    position: absolute;
+    transform: translateX(20px) translateY(38px);
+    font-size: 1.1em;
+    color: var(--primary);
+    transition: all 200ms;
+    cursor: text;
+    user-select: none;
+}
+
+.label--focus-input {
+    transform: translateX(0px) translateY(0px);
+    font-size: 1em;
+    cursor: default;
+}

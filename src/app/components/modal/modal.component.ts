@@ -7,8 +7,10 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit, OnChanges {
-  @Input() @Output() hidden: Boolean = true;
+  @Input() hidden: Boolean = true;
   @Output() hiddenChange = new EventEmitter<Boolean>();
+  @Output() open = new EventEmitter<Boolean>();
+  @Output() close = new EventEmitter<Boolean>();
   displayNone: Boolean = true;
   faXmark = faXmark;
   @Input() title: String = 'Modal Title';
@@ -17,13 +19,18 @@ export class ModalComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit(): void {
-
+    
   }
 
   ngOnChanges(changes: SimpleChanges ): void {
-    console.log(changes);
+    // open modal
     if (changes['hidden'].currentValue == false) {
+      this.open.emit();
       this.displayNone = false;
+    }
+
+    if (changes['hidden'].currentValue == true) {
+      this.close.emit();
     }
   }
 
@@ -36,7 +43,6 @@ export class ModalComponent implements OnInit, OnChanges {
     // On close
     if (e.target.classList.contains('layer')) {
       this.displayNone = true;
-      console.log(this.hidden, this.displayNone);
     }
 
   }

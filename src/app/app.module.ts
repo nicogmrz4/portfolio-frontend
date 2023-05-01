@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,10 @@ import { ExperienceService } from './services/experience.service';
 import { ModalComponent } from './components/modal/modal.component';
 import { BtnComponent } from './components/btn/btn.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
+import { LoginComponent } from './views/login/login.component';
+import { InputComponent } from './components/input/input.component';
+import { HomeComponent } from './views/home/home.component';
+import { AuthInterceptor } from './http/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,10 +44,14 @@ import { LoginModalComponent } from './components/login-modal/login-modal.compon
     ProjectItemComponent,
     ModalComponent,
     BtnComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    LoginComponent,
+    InputComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     FontAwesomeModule,
     NgCircleProgressModule.forRoot({
@@ -56,7 +65,9 @@ import { LoginModalComponent } from './components/login-modal/login-modal.compon
     HttpClientModule
   ],
   providers: [
-    ExperienceService
+    {
+      provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

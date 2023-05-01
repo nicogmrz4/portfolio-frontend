@@ -1,8 +1,22 @@
-<app-modal title="Iniciar sesión" [(hidden)]="hidden">
-    <input type="text">
-    <input type="text">
-    <input type="text">
-    <div foot>
-        <app-btn title="Iniciar sesión" [block]="true"></app-btn>
+<app-modal
+    title="Iniciar sesión"
+    [(hidden)]="hidden"
+    (close)="onClose()"
+    (open)="onOpen()"
+    maxWidth="800px"
+>
+    <div class="mb-3">
+        <app-input [(inputValue)]="email" label="Email andress"></app-input>
+
+        <app-input label="Contraseña"></app-input>
+    </div>
+    <div foot class="d-flex flex-column">
+        <app-btn class="mb-1" text="Iniciar sesión" [block]="true"></app-btn>
+        <app-btn
+            text="Cancelar"
+            [block]="true"
+            [danger]="true"
+            (click)="hidden = true"
+        ></app-btn>
     </div>
 </app-modal>

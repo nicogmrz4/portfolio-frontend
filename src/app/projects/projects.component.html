@@ -6,11 +6,8 @@
             [description]="item.description"
             [image]="item.image"
             [date]="item.created_at"
+            [isAutenticated]="isAutenticated"
         ></app-project-item>
-
-        <code>
-            {{ projects | json }}
-         </code>
     </div>
 </div>
 

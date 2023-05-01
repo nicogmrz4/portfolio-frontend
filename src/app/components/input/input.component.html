@@ -1,0 +1,7 @@
+<div>
+    <label [for]="id" [class]="{
+        'label': true,
+        'label--focus-input': focus || inputValue.length > 0
+    }">{{ label }}</label>
+    <input [id]="id" class="input" [(ngModel)]="inputValue" (ngModelChange)="inputValueChange.emit(inputValue)" (focus)="focus = true" (blur)="focus = false">
+</div>

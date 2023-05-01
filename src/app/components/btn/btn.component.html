@@ -3,4 +3,10 @@
     '_btn--danger': danger,
     'd-block': block,
     'w-100': block
-}">{{ text }}</button>
+}">
+   <div *ngIf="text != 'Button'; then thenBlock; else elseBlock"></div> 
+   <ng-template #thenBlock>{{ text }}</ng-template>
+   <ng-template #elseBlock>
+        <ng-content></ng-content>
+   </ng-template>
+</button>

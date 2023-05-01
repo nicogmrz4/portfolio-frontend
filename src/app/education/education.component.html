@@ -1,11 +1,13 @@
 <app-section-header title="Educación" float="right"></app-section-header>
 <div class="container text-end d-flex flex-column align-items-end">
     <div class="education-list">
+        <app-btn>AÑADIR</app-btn>
         <app-education-item *ngFor="let item of educations; index as i"
         [institute]="item.name"
         [description]="item.description"
         [periodFrom]="item.periodFrom"
-        [periodTo]="item.periodAt"></app-education-item>
+        [periodTo]="item.periodAt"
+        [isAutenticated]="isAutenticated"></app-education-item>
     </div>
 </div>
 

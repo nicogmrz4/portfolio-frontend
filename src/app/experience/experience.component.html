@@ -1,15 +1,18 @@
 <app-section-header title="Experiencia"></app-section-header>
 
 <div class="container">
-  
-    
+
   <div class="experience-list">
+    <div *ngIf="isAutenticated">
+      <app-btn>AÑADIR</app-btn>
+    </div>
     <app-experience-item *ngFor="let item of experiences; index as i"
     [company]="item.company"
     [job]="item.job"
     [description]="item.description"
     [periodFrom]="item.periodFrom"
     [periodTo]="item.periodAt"
+    [isAutenticated]="isAutenticated"
   ></app-experience-item>
 
   </div>

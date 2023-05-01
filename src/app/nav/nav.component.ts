@@ -1,5 +1,6 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faFacebookF , faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +12,7 @@ export class NavComponent implements OnInit {
   faLinkedin = faLinkedinIn;
   faTwitter = faTwitter;
   hiddenModalLogin: Boolean = true;
-  constructor() { }
+  constructor(public authServ: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -20,4 +21,7 @@ export class NavComponent implements OnInit {
     this.hiddenModalLogin = false;
   }
 
+  logout(): void {
+    this.authServ.logout();
+  }
 }

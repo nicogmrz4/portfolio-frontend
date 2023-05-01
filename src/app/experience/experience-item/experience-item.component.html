@@ -1,52 +1,95 @@
 <div class="experience-item">
-  <div *ngIf="logo != ''; then thenBlock else elseBlock"></div>
-  <ng-template #thenBlock>
-      <img class="logo ms-5" [src]="logo" alt="" srcset="">
-  </ng-template>
-  <ng-template #elseBlock>
-      <fa-icon [icon]="faBriefcase" class="briefcase-icon me-5"></fa-icon>  
-  </ng-template>
-  
-  <div class="right-side">
-    <h3 class="fw-semibold fs-2">{{ company }}</h3>
-    <span class="text-muted">{{ job }}</span>
-    <p class="experience-item__p">
-      {{ description }}
-    </p>
-    <span class="text-muted float-end">{{ periodFrom }} - {{ periodTo }}</span>
-    <div class="shadow-effect"></div>
-  </div>
+    
+    <div *ngIf="logo != ''; then thenBlock; else elseBlock"></div>
+    <ng-template #thenBlock>
+        <img class="logo ms-5" [src]="logo" alt="" srcset="" />
+    </ng-template>
+    <ng-template #elseBlock>
+        <fa-icon [icon]="faBriefcase" class="briefcase-icon me-5"></fa-icon>
+    </ng-template>
+
+    <div class="right-side">
+        <h3 class="fw-semibold fs-2">{{ company }}</h3>
+        <span class="text-muted">{{ job }}</span>
+        <p class="experience-item__p">
+            {{ description }}
+        </p>
+        <span class="text-muted float-end"
+            >{{ periodFrom }} - {{ periodTo }}</span
+        >
+    </div>
+    <div *ngIf="isAutenticated" class="actions">
+        <fa-icon class="action" [icon]="faPen"></fa-icon>
+        <fa-icon class="action" [icon]="faTrash"></fa-icon>
+    </div>
 </div>
 
 <style>
-  .experience-item {
-    display: flex;
-    align-items: center;
-    max-width: 900px;
-    border: 1px solid rgba(30, 136, 229, 0.4);
-    box-shadow: rgba(33, 150, 243, 0.3) 0px 0px, rgba(33, 150, 243, 0.3) 0px 0px,
-      rgba(30, 136, 229, 0.4) 0px 0px, rgba(66, 165, 245, 0.2) -5px 5px,
-      rgba(66, 165, 245, 0.2) -10px 10px, rgba(144, 202, 249, 0.05) -15px 15px;
-    padding: 1em 2em;
-    transition: 200ms box-shadow, 200ms transform;
-  }
-  .experience-item:hover {
-    box-shadow: rgba(33, 150, 243, 0.3) -5px 5px,
-      rgba(33, 150, 243, 0.3) -10px 10px, rgba(30, 136, 229, 0.4) -15px 15px,
-      rgba(66, 165, 245, 0.2) -20px 20px, rgba(100, 181, 246, 0.1) -25px 25px,
-      rgba(144, 202, 249, 0.05) -30px 30px;
-    transform: translateY(-15px) translateX(15px);
-  }  
-  .logo {
-    width: 150px;
-  }
-.right-side {
-  width: 100%;
-}
-.briefcase-icon {
-  font-size: 75px;
-  opacity: .2;
-  color: var(--header-text-color);
-}
+    .experience-item {
+        display: flex;
+        position: relative;
+        align-items: center;
+        max-width: 900px;
+        border: 1px solid var(--card-border-color);
+        box-shadow: rgba(33, 150, 243, 0.3) 0px 0px,
+            rgba(33, 150, 243, 0.3) 0px 0px, rgba(30, 136, 229, 0.4) 0px 0px,
+            rgba(66, 165, 245, 0.2) -5px 5px, rgba(66, 165, 245, 0.2) -10px 10px,
+            rgba(144, 202, 249, 0.05) -15px 15px;
+        padding: 1em 2em;
+        transition: 200ms box-shadow, 200ms transform;
+    }
+    
+    .experience-item:hover {
+        box-shadow: rgba(33, 150, 243, 0.3) -5px 5px,
+            rgba(33, 150, 243, 0.3) -10px 10px,
+            rgba(30, 136, 229, 0.4) -15px 15px,
+            rgba(66, 165, 245, 0.2) -20px 20px,
+            rgba(100, 181, 246, 0.1) -25px 25px,
+            rgba(144, 202, 249, 0.05) -30px 30px;
+        transform: translateY(-15px) translateX(15px);
+    }
 
+    .logo {
+        width: 150px;
+    }
+
+    .right-side {
+        width: 100%;
+    }
+
+    .briefcase-icon {
+        font-size: 75px;
+        opacity: 0.2;
+        color: var(--header-text-color);
+    }
+
+    .action {
+        font-size: 1em;
+        color: var(--card-border-color);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 200ms;
+    }
+
+    .actions {
+        display: flex;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        opacity: 0;
+        transition: opacity 200ms;
+    }
+
+    .action:hover {
+      background-color: #ffffff20;
+      cursor: pointer;
+    }
+
+    .experience-item:hover > .actions {
+        opacity: 1;
+    }
 </style>

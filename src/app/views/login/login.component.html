@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="login-form p-4">
+        <h3 class="text-center">Inicio de sesión del administrador</h3>
+        <app-input [(inputValue)]="credentials.username" class="me-0"label="Usuario"></app-input>
+        <app-input [(inputValue)]="credentials.password" class="me-4" label="Contraseña"></app-input>
+        <app-btn [block]="true" (click)="login()">Iniciar sesión</app-btn>
+    </div>
+</div>
+
+<style>
+    .container {
+        display: flex;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .login-form {
+        border: 1px solid rgba(30, 136, 229, 0.4);
+        max-width: 400px;
+    box-shadow: rgba(33, 150, 243, 0.3) -5px 5px, rgba(33, 150, 243, 0.3) -10px 10px, rgba(30, 136, 229, 0.4) -15px 15px, rgba(66, 165, 245, 0.2) -20px 20px, rgba(100, 181, 246, 0.1) -25px 25px, rgba(144, 202, 249, 0.05) -30px 30px;    
+        
+    }
+</style>

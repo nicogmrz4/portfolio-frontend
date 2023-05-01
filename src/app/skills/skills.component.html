@@ -1,29 +1,41 @@
 <app-section-header title="Habilidades" float="center"></app-section-header>
-<div class="container">
+<div class="container d-flex flex-column mt-5">
+    <app-btn class="mx-auto">AÑADIR</app-btn>
     <div class="skills mx-auto">
-        <div class="skills__item" *ngFor="let skill of skills">        
-            <circle-progress class="circle-progress"
-            [percent]="skill.percentage"
-            [radius]="81"
-            [showSubtitle]="false"
-            [outerStrokeWidth]="14"
-            [outerStrokeColor]="'var(--primary)'"
-            [outerStrokeLinecap]="'square'"
-            [title]="skill.percentage.toString()"
-            [titleFontSize]="'30'"
-            [titleFontWeight]="'700'"
-            [titleColor]="'#fff'"
-            [innerStrokeWidth]="0"
-            [unitsFontSize]="'18'"
-            [unitsColor]="'#769FCD'"
-            [animationDuration]="0"
-            [style]="'user-select: none'"
-            [backgroundColor]="'#082749'"
-            [showImage]="true"
-            [imageSrc]="'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/240px-Angular_full_color_logo.svg.png'"
-            [imageHeight]="100"
-            [imageWidth]="100"
+        <div
+            *ngFor="let skill of skills; index as i"
+            class="skills__item animate__animated animate__fadeInLeft"
+            [style]="{'animation-delay':  + (300 * i) + 'ms'}"
+        >
+            <circle-progress
+                class="circle-progress circle-progress--admin"
+                [percent]="skill.percentage"
+                [radius]="81"
+                [showSubtitle]="false"
+                [outerStrokeWidth]="14"
+                [outerStrokeColor]="'var(--primary)'"
+                [outerStrokeLinecap]="'square'"
+                [title]="skill.percentage.toString()"
+                [titleFontSize]="'30'"
+                [titleFontWeight]="'700'"
+                [titleColor]="'#fff'"
+                [innerStrokeWidth]="0"
+                [unitsFontSize]="'18'"
+                [unitsColor]="'#769FCD'"
+                [animationDuration]="0"
+                [style]="'user-select: none'"
+                [backgroundColor]="'#082749'"
+                [showImage]="true"
+                [imageSrc]="
+                    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/240px-Angular_full_color_logo.svg.png'
+                "
+                [imageHeight]="100"
+                [imageWidth]="100"
             ></circle-progress>
+            <div *ngIf="isAutenticated" class="actions">
+                <fa-icon class="action" [icon]="faPen"></fa-icon>
+                <fa-icon class="action" [icon]="faTrash"></fa-icon>
+            </div>
             <span class="percentaje text-muted">{{ skill.percentage }}%</span>
             <p class="technology">{{ skill.name }}</p>
         </div>
@@ -31,26 +43,56 @@
 </div>
 
 <style>
-.skills {
-    max-width: calc(600px + 9em);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5em;
-    align-items: center;
-    justify-content: center;
-    margin: 4em 0;
-}
+    .skills {
+        max-width: calc(600px + 9em);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5em;
+        align-items: center;
+        justify-content: center;
+        margin: 4em 0;
+    }
 
+    .skills__item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .skills__item > .technology {
+        font-size: 1.25em;
+        text-align: center;
+        font-weight: 500;
+    }
 
-.skills__item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.skills__item > .technology {
-    font-size: 1.25em;
-    text-align: center;
-    font-weight: 500;
-}
+    
+    .actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+        width: 186px;
+        height: 186px;
+        background-color: #00000080;
+        position: absolute;
+        left: 7px;
+        top: 7px;
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 200ms;
+    }
+    
+    .action {
+        font-size: 1.5em;
+        color: var(--primary);
+        cursor: pointer;
+    }
+    
+    .action:hover {
+        font-size: 1.75em;
+    }
+    .actions:hover {
+        opacity: 1;
+    }
 </style>

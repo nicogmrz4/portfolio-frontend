@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import { faGraduationCap, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-education-item',
@@ -12,6 +12,9 @@ export class EducationItemComponent implements OnInit {
   @Input() description: String = "";
   @Input() periodFrom: String = "";
   @Input() periodTo: String = "";
+  @Input() isAutenticated: boolean = false;
+  faPen = faPen;
+  faTrash = faTrash;
   faGraduationCap = faGraduationCap;
 
   constructor() { }
