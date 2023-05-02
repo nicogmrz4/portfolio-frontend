@@ -7,14 +7,13 @@
         }"
         >{{ label }}</label
     >
-    <input
+    <textarea
         [id]="id"
         class="input"
         [(ngModel)]="inputValue"
-        (ngModelChange)="onChanges()"
+        (ngModelChange)="inputValueChange.emit(inputValue)"
         (focus)="focus = true"
         (blur)="focus = false"
         [style.width]="width"
-    />
-    <p class="text-muted mb-0" *ngIf="!isValid">{{ message }}</p>
+    ></textarea>
 </div>

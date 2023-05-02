@@ -1,10 +1,10 @@
 <app-section-header title="Experiencia"></app-section-header>
-
+<app-experience-modal [(hidden)]="hiddenExperienceModal"></app-experience-modal>
 <div class="container">
 
   <div class="experience-list">
     <div *ngIf="isAutenticated">
-      <app-btn>AÑADIR</app-btn>
+      <app-btn (click)="openExperienceModal()">AÑADIR</app-btn>
     </div>
     <app-experience-item *ngFor="let item of experiences; index as i"
     [company]="item.company"

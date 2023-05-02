@@ -1,6 +1,6 @@
 <app-section-header title="Habilidades" float="center"></app-section-header>
 <div class="container d-flex flex-column mt-5">
-    <app-btn class="mx-auto">AÑADIR</app-btn>
+    <app-btn *ngIf="isAutenticated" class="mx-auto">AÑADIR</app-btn>
     <div class="skills mx-auto">
         <div
             *ngFor="let skill of skills; index as i"

@@ -10,7 +10,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class ExperienceComponent implements OnInit {
   experiences: experience[] = [];
-  isAutenticated: boolean = false;
+  isAutenticated: Boolean = false;
+  hiddenExperienceModal: Boolean = true;
 
   constructor(public service: ExperienceService, public authServ: AuthService) { }
 
@@ -25,5 +26,9 @@ export class ExperienceComponent implements OnInit {
     this.service.getExperices().subscribe((res: response<experience>) => {
       this.experiences = res.data;
     })
+  }
+
+  openExperienceModal() {
+    this.hiddenExperienceModal = false;
   }
 }

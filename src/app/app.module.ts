@@ -27,6 +27,8 @@ import { LoginComponent } from './views/login/login.component';
 import { InputComponent } from './components/input/input.component';
 import { HomeComponent } from './views/home/home.component';
 import { AuthInterceptor } from './http/auth.interceptor';
+import { ExperienceModalComponent } from './experience/experience-modal/experience-modal.component';
+import { TextareaComponent } from './components/textarea/textarea.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { AuthInterceptor } from './http/auth.interceptor';
     LoginModalComponent,
     LoginComponent,
     InputComponent,
-    HomeComponent
+    HomeComponent,
+    ExperienceModalComponent,
+    TextareaComponent
   ],
   imports: [
     BrowserModule,

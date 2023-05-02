@@ -1,0 +1,39 @@
+<app-modal
+    title="Añadir experiencia"
+    [(hidden)]="hidden"
+    (close)="onClose()"
+    (open)="onOpen()"
+>
+    <form>
+        <app-input label="Empresa" [minLen]="3" [maxLen]="10"></app-input>
+        <app-input label="Puesto"></app-input>
+        <app-textarea class="description-textarea" label="Description" width="100%"></app-textarea>
+        <div class="period">
+            <app-input width="160px" label="Desde"></app-input>
+            <app-input width="160px" label="Hasta"></app-input>
+        </div>
+    </form>
+</app-modal>
+
+
+<style>
+    form {
+        width: 720px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0 .5em;
+    }
+
+    .description-textarea {
+        width: 100%;
+    }
+
+    .period {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        width: 350px;
+    }
+</style>
