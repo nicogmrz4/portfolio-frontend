@@ -22,13 +22,14 @@ import { ProjectItemComponent } from './projects/project-item/project-item.compo
 import { ExperienceService } from './services/experience.service';
 import { ModalComponent } from './components/modal/modal.component';
 import { BtnComponent } from './components/btn/btn.component';
-import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { LoginComponent } from './views/login/login.component';
 import { InputComponent } from './components/input/input.component';
 import { HomeComponent } from './views/home/home.component';
 import { AuthInterceptor } from './http/auth.interceptor';
 import { ExperienceModalComponent } from './experience/experience-modal/experience-modal.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { EducationModalComponent } from './education/education-modal/education-modal.component';
 
 @NgModule({
   declarations: [
@@ -46,12 +47,13 @@ import { TextareaComponent } from './components/textarea/textarea.component';
     ProjectItemComponent,
     ModalComponent,
     BtnComponent,
-    LoginModalComponent,
     LoginComponent,
     InputComponent,
     HomeComponent,
     ExperienceModalComponent,
-    TextareaComponent
+    TextareaComponent,
+    ConfirmComponent,
+    EducationModalComponent
   ],
   imports: [
     BrowserModule,

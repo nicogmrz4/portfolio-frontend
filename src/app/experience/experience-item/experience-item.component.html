@@ -1,26 +1,26 @@
 <div class="experience-item">
     
-    <div *ngIf="logo != ''; then thenBlock; else elseBlock"></div>
+    <div *ngIf="data.logo != null; then thenBlock; else elseBlock"></div>
     <ng-template #thenBlock>
-        <img class="logo ms-5" [src]="logo" alt="" srcset="" />
+        <img class="logo ms-5" [src]="data.logo" alt="" srcset="" />
     </ng-template>
     <ng-template #elseBlock>
         <fa-icon [icon]="faBriefcase" class="briefcase-icon me-5"></fa-icon>
     </ng-template>
 
     <div class="right-side">
-        <h3 class="fw-semibold fs-2">{{ company }}</h3>
-        <span class="text-muted">{{ job }}</span>
+        <h3 class="fw-semibold fs-2">{{ data.company }}</h3>
+        <span class="text-muted">{{ data.job }}</span>
         <p class="experience-item__p">
-            {{ description }}
+            {{ data.description }}
         </p>
         <span class="text-muted float-end"
-            >{{ periodFrom }} - {{ periodTo }}</span
+            >{{ data.periodFrom }} - {{ data.periodAt }}</span
         >
     </div>
     <div *ngIf="isAutenticated" class="actions">
-        <fa-icon class="action" [icon]="faPen"></fa-icon>
-        <fa-icon class="action" [icon]="faTrash"></fa-icon>
+        <fa-icon class="action" (click)="edit()" [icon]="faPen"></fa-icon>
+        <fa-icon class="action" (click)="delete()" [icon]="faTrash"></fa-icon>
     </div>
 </div>
 

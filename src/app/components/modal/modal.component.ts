@@ -23,20 +23,18 @@ export class ModalComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges ): void {
-    // open modal
-    if (changes['hidden'].currentValue == false) {
+    if (this.hidden == false) {
       this.open.emit();
       this.displayNone = false;
     }
 
-    if (changes['hidden'].currentValue == true) {
+    if (this.hidden == true) {
       this.close.emit();
     }
   }
 
   closeModal(e: any): void {
-    this.hidden = true;
-    this.hiddenChange.emit(this.hidden);
+    this.hiddenChange.emit(true);
   }
 
   handleAnimationEnd(e:any) {

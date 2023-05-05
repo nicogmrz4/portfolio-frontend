@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { faBriefcase, faEllipsisVertical, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { experience } from 'src/app/interfaces/experience';
 
 
 @Component({
@@ -11,15 +12,26 @@ export class ExperienceItemComponent implements OnInit {
   faPen = faPen;
   faTrash = faTrash;
   faEllipsisVertical = faEllipsisVertical;
-  @Input() company: String = "";
-  @Input() logo: String = "";
-  @Input() job: String = "";
-  @Input() description: String = "";
-  @Input() periodFrom: String = "";
-  @Input() periodTo: String = "";
+  // @Input() company: String = "";
+  // @Input() logo: String = "";
+  // @Input() job: String = "";
+  // @Input() description: String = "";
+  // @Input() periodFrom: String = "";
+  // @Input() periodTo: String = "";
+  @Input() data!: experience;
   @Input() isAutenticated: Boolean = false;
+  @Output() onDelete: EventEmitter<experience> = new EventEmitter<experience>();
+  @Output() onEdit: EventEmitter<experience> = new EventEmitter<experience>();
 
   ngOnInit(): void {
     
+  }
+
+  delete() {
+    this.onDelete.emit(this.data);
+  }
+
+  edit() {
+    this.onEdit.emit(this.data);
   }
 }

@@ -11,14 +11,9 @@ export class NavComponent implements OnInit {
   faFacebookF = faFacebookF;
   faLinkedin = faLinkedinIn;
   faTwitter = faTwitter;
-  hiddenModalLogin: Boolean = true;
   constructor(public authServ: AuthService) { }
 
   ngOnInit(): void {
-  }
-
-  openModal(): void {
-    this.hiddenModalLogin = false;
   }
 
   logout(): void {

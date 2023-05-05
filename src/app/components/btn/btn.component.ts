@@ -9,6 +9,7 @@ export class BtnComponent implements OnInit {
   @Input() text: String = 'Button';
   @Input() danger: Boolean = false;
   @Input() block: Boolean = false;
+  @Input() type: 'text' | 'submit' | 'reset' = 'text';
   constructor() { }
 
   ngOnInit(): void {

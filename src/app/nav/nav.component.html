@@ -13,8 +13,6 @@
                     <fa-icon class="icon" [icon]="faTwitter"></fa-icon>
                 </div>
             </div>
-            <app-login-modal [(hidden)]="hiddenModalLogin"></app-login-modal>
-            <!--<app-btn (click)="openModal()">Login</app-btn>-->
             <div *ngIf="authServ.isAutenticated(); then thenBlock" ></div>
             <ng-template #thenBlock>
                 <app-btn (click)="logout()">Salir</app-btn>

@@ -1,18 +1,22 @@
 <app-modal
-    title="Añadir experiencia"
+    [title]="title"
     [(hidden)]="hidden"
     (close)="onClose()"
     (open)="onOpen()"
 >
     <form>
-        <app-input label="Empresa" [minLen]="3" [maxLen]="10"></app-input>
-        <app-input label="Puesto"></app-input>
-        <app-textarea class="description-textarea" label="Description" width="100%"></app-textarea>
+        <app-input [(inputValue)]="currentData.company" label="Empresa" [minLen]="3" [maxLen]="10"></app-input>
+        <app-input [(inputValue)]="currentData.job" label="Puesto"></app-input>
+        <app-textarea [(inputValue)]="currentData.description" class="description-textarea" label="Description" width="100%"></app-textarea>
         <div class="period">
-            <app-input width="160px" label="Desde"></app-input>
-            <app-input width="160px" label="Hasta"></app-input>
+            <app-input [(inputValue)]="currentData.periodFrom" width="170px" label="Desde"></app-input>
+            <app-input [(inputValue)]="currentData.periodAt" width="170px" label="Hasta"></app-input>
         </div>
     </form>
+    <div foot class="d-flex justify-content-end gap-2">
+        <app-btn (click)="onSubmit()" [type]="'submit'">Aceptar</app-btn>
+        <app-btn (click)="onClose()"[danger]="true">Cancelar</app-btn>
+    </div>
 </app-modal>
 
 

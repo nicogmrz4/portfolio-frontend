@@ -1,35 +1,47 @@
 <app-section-header title="Experiencia"></app-section-header>
-<app-experience-modal [(hidden)]="hiddenExperienceModal"></app-experience-modal>
+<!-- MODAL -->
+<app-experience-modal
+[(hidden)]="hiddenExperienceModal"
+(onNewExperience)="addExperience($event)"
+(onEditExperience)="editExperience($event)"
+[currentData]="targetExperience"
+></app-experience-modal>
+<!-- CONFIRM-->
+<app-confirm
+    [(hidden)]="hiddenDeleteExperienceConfirm"
+    [title]="'¿Desa eliminar ' + targetExperience.company + '?'"
+    (onAcept)="deleteExperience()"
+></app-confirm>
+
 <div class="container">
-
-  <div class="experience-list">
-    <div *ngIf="isAutenticated">
-      <app-btn (click)="openExperienceModal()">AÑADIR</app-btn>
+    <div class="experience-list">
+        <div *ngIf="isAutenticated">
+            <app-btn (click)="newExperience()">AÑADIR</app-btn>
+        </div>
+        <app-experience-item
+            *ngFor="let item of experiences; index as i"
+            [data]="item"
+            [isAutenticated]="isAutenticated"
+            (onEdit)="onEditExperience($event, i)"
+            (onDelete)="onTryDeleteExperience($event, i)"
+        ></app-experience-item>
     </div>
-    <app-experience-item *ngFor="let item of experiences; index as i"
-    [company]="item.company"
-    [job]="item.job"
-    [description]="item.description"
-    [periodFrom]="item.periodFrom"
-    [periodTo]="item.periodAt"
-    [isAutenticated]="isAutenticated"
-  ></app-experience-item>
-
-  </div>
-  <div class="nothing"></div>
+    <div class="nothing"></div>
 </div>
 
 <style>
-  .experience-list {
-    display: grid;
-    gap: 2.25em;
-    margin-top: 4em;
-    margin-bottom: calc(4em + 15px);
-  }
+    .experience-list {
+        display: grid;
+        gap: 2.25em;
+        margin-top: 4em;
+        margin-bottom: calc(4em + 15px);
+        min-height: 400px;
+        transition: height 200ms;
+    }
 
-  .nothing {
-    width: 300px;
-    height: 100%;
-    position: absolute;
-  }
+    .nothing {
+        width: 300px;
+        height: 100%;
+        position: absolute;
+    }
 </style>

@@ -1,0 +1,54 @@
+<div
+    (animationend)="handleAnimationEnd($event)"
+    [class]="{
+        layer: true,
+        animate__animated: true,
+        animate__fadeOut: hidden,
+        'd-none': displayNone
+    }"
+>
+    <div
+        [class]="{
+            confirm: true,
+            animate__animated: true,
+            animate__fadeInDown: !hidden,
+            animate__fadeOutDown: hidden
+        }"
+    >
+        <div class="confirm__header">
+            <h3 class="confirm__title">{{ title }}</h3>
+        </div>
+        <div class="confirm__body">
+            <p>{{ message }}</p>
+        </div>
+        <div class="confirm__foot d-flex justify-content-end gap-2">
+            <app-btn (click)="acept()">Aceptar</app-btn>
+            <app-btn (click)="cancel()"[danger]="true">Cancelar</app-btn>
+        </div>
+    </div>
+</div>
+
+<style>
+    .layer {
+        left: 0;
+        top: 0;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background: #00000099;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        animation-duration: 250ms;
+        z-index: 100;
+    }
+
+    .confirm {
+        position: relative;
+        background: var(--bg);
+        border-radius: 15px;
+        padding: 1em 1em;
+        animation-duration: 500ms;
+    }
+</style>
