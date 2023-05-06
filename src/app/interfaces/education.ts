@@ -1,7 +1,7 @@
 export interface education {
-    id: Number
+    id: number|null;
     name: String;
-    logo: String;
+    logo: String|null;
     description: String;
     periodFrom: String;
     periodAt: String;

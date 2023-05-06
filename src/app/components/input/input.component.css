@@ -27,10 +27,12 @@
     transition: all 200ms;
     cursor: text;
     user-select: none;
+    opacity: .6;
 }
 
 .label--focus-input {
     transform: translateX(0px) translateY(0px);
     font-size: 1em;
     cursor: default;
+    opacity: 1;
 }

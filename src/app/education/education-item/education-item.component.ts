@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { faGraduationCap, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { education } from 'src/app/interfaces/education';
+import { educationModel } from 'src/app/models/educationModel';
 
 @Component({
   selector: 'app-education-item',
@@ -7,11 +9,9 @@ import { faGraduationCap, faPen, faTrash } from '@fortawesome/free-solid-svg-ico
   styleUrls: ['./education-item.component.css']
 })
 export class EducationItemComponent implements OnInit {
-  @Input() institute: String = "";
-  @Input() logo: String = "";
-  @Input() description: String = "";
-  @Input() periodFrom: String = "";
-  @Input() periodTo: String = "";
+  @Input() data: education = Object.assign({}, educationModel);
+  @Output() onDelete: EventEmitter<education> = new EventEmitter<education>();
+  @Output() onEdit: EventEmitter<education> = new EventEmitter<education>();
   @Input() isAutenticated: boolean = false;
   faPen = faPen;
   faTrash = faTrash;
@@ -20,6 +20,14 @@ export class EducationItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  delete() {
+    this.onDelete.emit(this.data)
+  }
+  
+  edit() {
+    this.onEdit.emit(this.data)
   }
 
 }

@@ -1,23 +1,39 @@
 <app-section-header title="Educación" float="right"></app-section-header>
+<!-- MODAL -->
+<app-education-modal
+    [(hidden)]="hiddenEducationModal"
+    [currentData]="targetEducation"
+    (onNewEducation)="addEducation($event)"
+    (onEditEducation)="editEducation($event)"
+></app-education-modal>
+<!-- DELETE CONFIRM -->
+<app-confirm
+    [(hidden)]="hiddenDeleteEducationConfirm"
+    [title]="'Desea eliminar ' + targetEducation.name + '?'"
+    (onAcept)="deleteEducation()"
+></app-confirm>
 <div class="container text-end d-flex flex-column align-items-end">
     <div class="education-list">
-        <app-btn *ngIf="isAutenticated">AÑADIR</app-btn>
-        <app-education-item *ngFor="let item of educations; index as i"
-        [institute]="item.name"
-        [description]="item.description"
-        [periodFrom]="item.periodFrom"
-        [periodTo]="item.periodAt"
-        [isAutenticated]="isAutenticated"></app-education-item>
+        <app-btn *ngIf="isAutenticated" (click)="newEducation()"
+            >AÑADIR</app-btn
+        >
+        <app-education-item
+            *ngFor="let item of educations; index as i"
+            [data]="item"
+            (onDelete)="onTryDeleteEducation($event, i)"
+            (onEdit)="onEditEducation($event, i)"
+            [isAutenticated]="isAutenticated"
+        ></app-education-item>
     </div>
 </div>
 
 <style>
-.education-list {
-    display: flex;
-    flex-direction: column;
-    max-width: 900px;
-    gap: 2.25em;
-    margin-top: 4em;
-    margin-bottom: calc(4em + 15px);
-}
+    .education-list {
+        display: flex;
+        flex-direction: column;
+        max-width: 900px;
+        gap: 2.25em;
+        margin-top: 4em;
+        margin-bottom: calc(4em + 15px);
+    }
 </style>

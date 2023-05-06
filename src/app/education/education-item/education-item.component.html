@@ -1,16 +1,16 @@
 <div class="education-item">
     <div *ngIf="isAutenticated" class="actions">
-        <fa-icon class="action" [icon]="faPen"></fa-icon>
-        <fa-icon class="action" [icon]="faTrash"></fa-icon>
+        <fa-icon class="action" (click)="edit()" [icon]="faPen"></fa-icon>
+        <fa-icon class="action" (click)="delete()" [icon]="faTrash"></fa-icon>
     </div>
     <div class="left-side text-end">
-        <h3 class="fw-semibold fs-2">{{ institute }}</h3>
-        <p class="">{{ description }}</p>
-        <span class="text-muted float-start">{{ periodFrom }} - {{ periodTo }}</span>
+        <h3 class="fw-semibold fs-2">{{ data.name }}</h3>
+        <p class="">{{ data.description }}</p>
+        <span class="text-muted float-start">{{ data.periodFrom }} - {{ data.periodAt }}</span>
     </div>
-    <div *ngIf="logo != ''; then thenBlock; else elseBlock"></div>
+    <div *ngIf="data.logo != null; then thenBlock; else elseBlock"></div>
     <ng-template #thenBlock>
-        <img class="logo ms-5" [src]="logo" alt="" srcset="" />
+        <img class="logo ms-5" [src]="data.logo" alt="" srcset="" />
     </ng-template>
     <ng-template #elseBlock>
         <fa-icon

@@ -12,12 +12,6 @@ export class ExperienceItemComponent implements OnInit {
   faPen = faPen;
   faTrash = faTrash;
   faEllipsisVertical = faEllipsisVertical;
-  // @Input() company: String = "";
-  // @Input() logo: String = "";
-  // @Input() job: String = "";
-  // @Input() description: String = "";
-  // @Input() periodFrom: String = "";
-  // @Input() periodTo: String = "";
   @Input() data!: experience;
   @Input() isAutenticated: Boolean = false;
   @Output() onDelete: EventEmitter<experience> = new EventEmitter<experience>();

@@ -15,7 +15,7 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
     @Output() hiddenChange = new EventEmitter<Boolean>();
     @Output() onNewExperience = new EventEmitter<experience>();
     @Output() onEditExperience = new EventEmitter<experience>();
-    @Input() currentData: experience = experienceModel;
+    @Input() currentData: experience = Object.assign({}, experienceModel);
     title = '';
 
     constructor(private service: ExperienceService) {}
