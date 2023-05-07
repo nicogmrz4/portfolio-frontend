@@ -1,11 +1,25 @@
 <app-section-header title="Habilidades" float="center"></app-section-header>
+<!-- MODAL -->
+<app-skill-modal
+    [(hidden)]="hiddenSkillModal"
+    (onNewSkill)="addSkill($event)"
+    (onEditSkill)="editSkill($event)"
+    [currentData]="targetSkill"
+></app-skill-modal>
+<!-- DELETE CONFIRM -->
+<app-confirm
+    [(hidden)]="hiddenDeleteSkillConfirm"
+    [title]="'¿Desea eliminar ' + targetSkill.name + '?'"
+    (onAcept)="deleteSkill()"
+></app-confirm>
 <div class="container d-flex flex-column mt-5">
-    <app-btn *ngIf="isAutenticated" class="mx-auto">AÑADIR</app-btn>
+    <app-btn *ngIf="isAutenticated" class="mx-auto" (click)="newSkill()"
+        >AÑADIR</app-btn
+    >
     <div class="skills mx-auto">
         <div
             *ngFor="let skill of skills; index as i"
-            class="skills__item animate__animated animate__fadeInLeft"
-            [style]="{'animation-delay':  + (300 * i) + 'ms'}"
+            class="skills__item"
         >
             <circle-progress
                 class="circle-progress circle-progress--admin"
@@ -33,8 +47,16 @@
                 [imageWidth]="100"
             ></circle-progress>
             <div *ngIf="isAutenticated" class="actions">
-                <fa-icon class="action" [icon]="faPen"></fa-icon>
-                <fa-icon class="action" [icon]="faTrash"></fa-icon>
+                <fa-icon
+                    class="action"
+                    [icon]="faPen"
+                    (click)="onEditSkill(skill, i)"
+                ></fa-icon>
+                <fa-icon
+                    class="action"
+                    [icon]="faTrash"
+                    (click)="onTryDeleteSkill(skill, i)"
+                ></fa-icon>
             </div>
             <span class="percentaje text-muted">{{ skill.percentage }}%</span>
             <p class="technology">{{ skill.name }}</p>
@@ -66,7 +88,6 @@
         font-weight: 500;
     }
 
-    
     .actions {
         display: flex;
         justify-content: center;
@@ -82,13 +103,13 @@
         opacity: 0;
         transition: opacity 200ms;
     }
-    
+
     .action {
         font-size: 1.5em;
         color: var(--primary);
         cursor: pointer;
     }
-    
+
     .action:hover {
         font-size: 1.75em;
     }

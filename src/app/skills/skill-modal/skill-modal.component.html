@@ -1,0 +1,37 @@
+<app-modal
+    [title]="title"
+    [(hidden)]="hidden"
+    (close)="onClose()"
+    (open)="onOpen()"
+>
+    <form>
+        <app-input [(inputValue)]="currentData.name" label="Nombre"></app-input>
+        <app-input [(inputValue)]="currentData.percentage" label="Porcenataje"></app-input>
+    </form>
+    <div foot class="d-flex justify-content-end gap-2 mt-4">
+        <app-btn (click)="onSubmit()" [type]="'submit'">Aceptar</app-btn>
+        <app-btn (click)="onClose()"[danger]="true">Cancelar</app-btn>
+    </div>
+</app-modal>
+
+<style>
+    form {
+        width: 720px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0 .5em;
+    }
+
+    .description-textarea {
+        width: 100%;
+    }
+
+    .period {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        width: 350px;
+    }
+</style>

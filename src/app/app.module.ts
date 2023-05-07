@@ -30,6 +30,7 @@ import { ExperienceModalComponent } from './experience/experience-modal/experien
 import { TextareaComponent } from './components/textarea/textarea.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { EducationModalComponent } from './education/education-modal/education-modal.component';
+import { SkillModalComponent } from './skills/skill-modal/skill-modal.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { EducationModalComponent } from './education/education-modal/education-m
     ExperienceModalComponent,
     TextareaComponent,
     ConfirmComponent,
-    EducationModalComponent
+    EducationModalComponent,
+    SkillModalComponent
   ],
   imports: [
     BrowserModule,

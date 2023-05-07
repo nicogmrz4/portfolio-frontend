@@ -1,6 +1,6 @@
 export interface skill {
-    id: Number
+    id: number | null,
     name: String,
-    icon: String,
-    percentage: number
+    icon: String | null,
+    percentage: any
 }

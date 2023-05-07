@@ -11,7 +11,6 @@ import { EducationService } from 'src/app/services/education.service';
   styleUrls: ['./education-modal.component.css']
 })
 export class EducationModalComponent implements OnInit {
-
   @Input() hidden: Boolean = true;
   @Output() hiddenChange = new EventEmitter<Boolean>();
   @Output() onNewEducation = new EventEmitter<education>();
