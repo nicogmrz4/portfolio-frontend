@@ -28,7 +28,7 @@ export class ExperienceComponent implements OnInit {
   }
 
   loadExperiences(): void {
-    this.service.getExperices().subscribe((res: response<experience>) => {
+    this.service.getExperience().subscribe((res: response<experience>) => {
       this.experiences = res.data;
     })
   }
@@ -70,7 +70,7 @@ export class ExperienceComponent implements OnInit {
 
   deleteExperience() {
     const id = this.targetExperience.id;
-    this.service.deleteExperices(id).subscribe((res: HttpResponse<response<any>>) => {
+    this.service.deleteExperience(id).subscribe((res: HttpResponse<response<any>>) => {
       if (res.status == 200) {
         this.removeTargetFromList();
       }

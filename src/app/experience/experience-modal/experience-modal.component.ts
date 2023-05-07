@@ -48,7 +48,7 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
 
     newExperience() {
         this.service
-            .createExperices(this.currentData)
+            .createExperience(this.currentData)
             .subscribe((res: HttpResponse<response<experience>>) => {
                 if (res.status == 201) {
                     const newExperience = res.body?.data[0];
@@ -59,7 +59,7 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
 
     editExperience(id: any, data: experience) {
         this.service
-            .editExperices(id, data)
+            .editExperience(id, data)
             .subscribe((res: HttpResponse<response<experience>>) => {
               if (res.status == 200) {
                 const editedExperience = res.body?.data[0];

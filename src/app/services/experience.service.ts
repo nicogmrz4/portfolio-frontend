@@ -13,23 +13,23 @@ export class ExperienceService {
 
     constructor(private http: HttpClient) {}
 
-    getExperices(): Observable<response<experience>> {
+    getExperience(): Observable<response<experience>> {
         return this.http.get<response<experience>>(env.apiUrl + this.ENDPOINT);
     }
 
-    createExperices(item: experience): Observable<any> {
+    createExperience(item: experience): Observable<any> {
         return this.http.post<HttpResponse<response<experience>>>(env.apiUrl + this.ENDPOINT, item, {
             observe: 'response'
         });
     }
 
-    editExperices(id: any, editedItem: experience): Observable<any> {
+    editExperience(id: any, editedItem: experience): Observable<any> {
         return this.http.put<HttpResponse<response<experience>>>(env.apiUrl + this.ENDPOINT + `/${id}`, editedItem, {
             observe: 'response'
         });
     }
 
-    deleteExperices(id: any): Observable<any> {
+    deleteExperience(id: any): Observable<any> {
         return this.http.delete<HttpResponse<response<any>>>(env.apiUrl + this.ENDPOINT + `/${id}` , {
             observe: 'response'
         });
