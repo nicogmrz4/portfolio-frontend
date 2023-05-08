@@ -1,0 +1,39 @@
+<app-modal
+    [title]="title"
+    [(hidden)]="hidden"
+    (close)="onClose()"
+    (open)="onOpen()"
+>
+    <form>
+        <app-input [(inputValue)]="currentData.title" label="Titulo" [minLen]="3" [maxLen]="10"></app-input>
+        <app-input [(inputValue)]="currentData.created_at" label="Fecha de creación"></app-input>
+        <app-textarea [(inputValue)]="currentData.description" class="description-textarea" label="Description" width="100%"></app-textarea>
+    </form>
+    <div foot class="d-flex justify-content-end gap-2">
+        <app-btn (click)="onSubmit()" [type]="'submit'">Aceptar</app-btn>
+        <app-btn (click)="onClose()"[danger]="true">Cancelar</app-btn>
+    </div>
+</app-modal>
+
+
+<style>
+    form {
+        width: 720px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0 .5em;
+    }
+
+    .description-textarea {
+        width: 100%;
+    }
+
+    .period {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        width: 350px;
+    }
+</style>

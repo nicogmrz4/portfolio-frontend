@@ -31,6 +31,7 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { EducationModalComponent } from './education/education-modal/education-modal.component';
 import { SkillModalComponent } from './skills/skill-modal/skill-modal.component';
+import { ProjectModalComponent } from './projects/project-modal/project-modal.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { SkillModalComponent } from './skills/skill-modal/skill-modal.component'
     TextareaComponent,
     ConfirmComponent,
     EducationModalComponent,
-    SkillModalComponent
+    SkillModalComponent,
+    ProjectModalComponent
   ],
   imports: [
     BrowserModule,

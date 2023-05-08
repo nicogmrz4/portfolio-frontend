@@ -1,15 +1,15 @@
 <div class="project">
-    <img class="mb-1" [src]="image || 'assets/image_not_available.png'" alt="" srcset="" />
+    <img class="mb-1" [src]="data.image || 'assets/image_not_available.png'" alt="" srcset="" />
     <div class="project__body">
-        <h3 class="title fw-semibold fs-2">{{ name }}</h3>
+        <h3 class="title fw-semibold fs-2">{{ data.title }}</h3>
         <p class="description">
-            {{ description }}
+            {{ data.description }}
         </p>
-        <span class="date text-muted mb-2">{{ date }}</span>
+        <span class="date text-muted mb-2">{{ data.created_at }}</span>
       </div>
       <div *ngIf="isAutenticated" class="actions">
-        <fa-icon class="action" [icon]="faPen"></fa-icon>
-        <fa-icon class="action" [icon]="faTrash"></fa-icon>
+        <fa-icon class="action" [icon]="faPen" (click)="edit()"></fa-icon>
+        <fa-icon class="action" [icon]="faTrash" (click)="delete()"></fa-icon>
       </div>
 </div>
 

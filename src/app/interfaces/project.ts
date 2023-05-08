@@ -1,6 +1,6 @@
 export interface project {
-    id: Number
-    image: String,
+    id: number | null
+    image: String | null,
     title: String,
     description: String,
     created_at: String,

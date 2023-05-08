@@ -1,12 +1,26 @@
 <app-section-header title="Proyectos"></app-section-header>
+<!-- MODAL -->
+<app-project-modal
+[(hidden)]="hiddenProjectModal"
+[currentData]="targetProject"
+(onNewProject)="addProject($event)"
+(onEditProject)="editProject($event)"
+></app-project-modal>
+<!-- DELETE CONFIRM -->
+<app-confirm
+[(hidden)]="hiddenDeleteProjectConfirm"
+[title]="'¿Desea eliminar ' + targetProject.title + '?'"
+(onAcept)="deleteProject()"
+></app-confirm>
 <div class="container">
+    <app-btn *ngIf="isAutenticated" (click)="newProject()">AÑADIR</app-btn>
     <div class="projects">
-        <app-project-item *ngFor="let item of projects; index as i"
-            [name]="item.title"
-            [description]="item.description"
-            [image]="item.image"
-            [date]="item.created_at"
+        <app-project-item
+            *ngFor="let item of projects; index as i"
+            [data]="item"
             [isAutenticated]="isAutenticated"
+            (onEdit)="onEditProject($event, i)"
+            (onDelete)="onTryDeleteProject($event, i)"
         ></app-project-item>
     </div>
 </div>
@@ -14,9 +28,9 @@
 <style>
     .projects {
         display: grid;
-        grid-template-columns: repeat(3, 300px);
-        gap: 3em;
-        place-items: start;
+        grid-template-columns: repeat(auto-fit, 300px);
+        gap: 3em 2em;
+        place-items: center;
         justify-content: center;
         margin: 4em 0;
     }
