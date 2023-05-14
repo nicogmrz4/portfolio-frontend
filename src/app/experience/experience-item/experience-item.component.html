@@ -2,7 +2,7 @@
     
     <div *ngIf="data.logo != null; then thenBlock; else elseBlock"></div>
     <ng-template #thenBlock>
-        <img class="logo ms-5" [src]="data.logo" alt="" srcset="" />
+        <img class="logo me-5" [src]="mediaUrl + '/' + data.logo" alt="" srcset="" />
     </ng-template>
     <ng-template #elseBlock>
         <fa-icon [icon]="faBriefcase" class="briefcase-icon me-5"></fa-icon>

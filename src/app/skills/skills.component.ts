@@ -6,6 +6,7 @@ import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../services/auth.service';
 import { skillModel } from '../models/skillModel';
 import { HttpResponse } from '@angular/common/http';
+import { environment as env } from 'src/environments/environment';
 
 @Component({
   selector: 'app-skills',
@@ -21,6 +22,7 @@ export class SkillsComponent implements OnInit {
   hiddenDeleteSkillConfirm: Boolean = true;
   targetSkill: skill = Object.assign({}, skillModel);
   targetSkillIndex!: number;
+  mediaUrl: string = env.mediaUrl;
 
   constructor(public service: SkillService, private authServ: AuthService) { }
 

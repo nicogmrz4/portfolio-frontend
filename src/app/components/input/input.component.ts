@@ -6,18 +6,21 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./input.component.css']
 })
 export class InputComponent implements OnInit {
-  @Input() inputValue: String = "";
-  @Output() inputValueChange: EventEmitter<String> = new EventEmitter<String>();
-  @Input() label: String = "";
+  @Input() inputValue: string | string = "";
+  @Output() inputValueChange: EventEmitter<string> = new EventEmitter<string>();
+  @Input() label: string = "";
   focus: Boolean = false;
-  id!: String;
-  @Input() width: String = "350px";
+  id!: string;
+  @Input() width: string = "350px";
   @Input() minLen: number|null = null; 
   @Input() maxLen: number|null = null; 
   @Input() required: Boolean = false;
   isValid: boolean = true;
   @Output() isValidChange: EventEmitter<Boolean> = new EventEmitter<Boolean>();
   message: string = "";
+  @Input() info!: string;
+  @Input() error!: string;
+  @Input() type: string = "text";
 
   constructor() { }
 

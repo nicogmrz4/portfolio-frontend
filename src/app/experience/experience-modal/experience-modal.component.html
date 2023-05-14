@@ -5,28 +5,62 @@
     (open)="onOpen()"
 >
     <form>
-        <app-input [(inputValue)]="currentData.company" label="Empresa" [minLen]="3" [maxLen]="10"></app-input>
-        <app-input [(inputValue)]="currentData.job" label="Puesto"></app-input>
-        <app-textarea [(inputValue)]="currentData.description" class="description-textarea" label="Description" width="100%"></app-textarea>
-        <div class="period">
-            <app-input [(inputValue)]="currentData.periodFrom" width="170px" label="Desde"></app-input>
-            <app-input [(inputValue)]="currentData.periodAt" width="170px" label="Hasta"></app-input>
+        <div class="inputs">
+            <app-input
+                [(inputValue)]="currentData.company"
+                label="Empresa*"
+                [error]="errors.company.NotBlank || errors.company.Size"
+                [info]="'Nombre de la empresa.'"
+            ></app-input>
+            <app-input
+                [(inputValue)]="currentData.job"
+                label="Puesto*"
+                [info]="'Puesto en la empresa.'"
+                [error]="errors.job.NotBlank || errors.job.Size"
+            ></app-input>
+            <app-textarea
+                [(inputValue)]="currentData.description"
+                class="description-textarea"
+                label="Description*"
+                width="100%"
+                [info]="'Una descripción sobre tu desempeño en la empresa.'"
+                [error]="errors.description.NotBlank || errors.description.Size"
+            ></app-textarea>
+            <div class="period">
+                <app-input
+                    [(inputValue)]="currentData.periodFrom"
+                    width="170px"
+                    label="Desde*"
+                    [info]="'Fecha de inicio e.j: 2/2023'"
+                    [error]="
+                        errors.periodFrom.NotBlank || errors.periodFrom.Pattern
+                    "
+                ></app-input>
+                <app-input
+                    [(inputValue)]="currentData.periodAt"
+                    width="170px"
+                    label="Hasta*"
+                    [info]="'Fecha de fin e.j: 2/2023'"
+                    [error]="
+                        errors.periodAt.NotBlank || errors.periodAt.Pattern
+                    "
+                ></app-input>
+            </div>
         </div>
+        <app-file-upload-input (onSelectFile)="onSelectFile($event)" accept="image/*"></app-file-upload-input>
     </form>
     <div foot class="d-flex justify-content-end gap-2">
         <app-btn (click)="onSubmit()" [type]="'submit'">Aceptar</app-btn>
-        <app-btn (click)="onClose()"[danger]="true">Cancelar</app-btn>
+        <app-btn (click)="onClose()" [danger]="true">Cancelar</app-btn>
     </div>
 </app-modal>
 
-
 <style>
     form {
-        width: 720px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        gap: 0 .5em;
+        gap: 0 2em;
     }
 
     .description-textarea {

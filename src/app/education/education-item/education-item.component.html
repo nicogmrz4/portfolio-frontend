@@ -5,12 +5,13 @@
     </div>
     <div class="left-side text-end">
         <h3 class="fw-semibold fs-2">{{ data.name }}</h3>
+        <span class="text-muted">{{ data.career }}</span>
         <p class="">{{ data.description }}</p>
         <span class="text-muted float-start">{{ data.periodFrom }} - {{ data.periodAt }}</span>
     </div>
     <div *ngIf="data.logo != null; then thenBlock; else elseBlock"></div>
     <ng-template #thenBlock>
-        <img class="logo ms-5" [src]="data.logo" alt="" srcset="" />
+        <img class="logo ms-5" [src]="mediaUrl + '/' + data.logo" alt="" srcset="" />
     </ng-template>
     <ng-template #elseBlock>
         <fa-icon

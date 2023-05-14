@@ -1,9 +1,9 @@
 export interface experience {
     id: Number|null
-    logo: String|null;
-    company: String;
-    description: String;
-    job: String;
-    periodFrom: String;
-    periodAt: String;
+    logo: string|null;
+    company: string;
+    description: string;
+    job: string;
+    periodFrom: string;
+    periodAt: string;
 }

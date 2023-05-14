@@ -32,6 +32,7 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { EducationModalComponent } from './education/education-modal/education-modal.component';
 import { SkillModalComponent } from './skills/skill-modal/skill-modal.component';
 import { ProjectModalComponent } from './projects/project-modal/project-modal.component';
+import { FileUploadInputComponent } from './components/file-upload-input/file-upload-input.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ProjectModalComponent } from './projects/project-modal/project-modal.co
     ConfirmComponent,
     EducationModalComponent,
     SkillModalComponent,
-    ProjectModalComponent
+    ProjectModalComponent,
+    FileUploadInputComponent
   ],
   imports: [
     BrowserModule,

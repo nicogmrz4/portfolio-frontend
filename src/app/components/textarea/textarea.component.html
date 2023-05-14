@@ -3,17 +3,29 @@
         [for]="id"
         [class]="{
             label: true,
-            'label--focus-input': focus || inputValue.length > 0
+            'label--focus-input': focus || inputValue.length > 0,
+            'label--error': !!error
         }"
         >{{ label }}</label
     >
     <textarea
         [id]="id"
         class="input"
+        [class]="{
+            'input--error': !!error
+        }"
         [(ngModel)]="inputValue"
         (ngModelChange)="inputValueChange.emit(inputValue)"
         (focus)="focus = true"
         (blur)="focus = false"
         [style.width]="width"
     ></textarea>
+    <p
+        class="text-muted mb-0 ms-1"
+        [class]="{
+            'info--error': !!error
+        }"
+    >
+        {{ !!error ? error : info }}
+    </p>
 </div>

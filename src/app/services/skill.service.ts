@@ -46,7 +46,19 @@ export class SkillService {
         );
     }
 
-    toNumber(num: Number): String {
+    
+    uploadSkillIcon(id: any, icon: File): Observable<any> {
+        const url = env.apiUrl + this.ENDPOINT + `/${id}/icon`;
+        
+        let formData: FormData = new FormData();
+        formData.append('icon', icon);
+
+        return this.http.post<HttpResponse<response<skill>>>(url, formData, {
+            observe: 'response'
+        });
+    }
+
+    toNumber(num: Number): string {
         return String(num);
     }
 }

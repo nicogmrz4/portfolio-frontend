@@ -5,13 +5,25 @@
     (open)="onOpen()"
 >
     <form>
-        <app-input [(inputValue)]="currentData.name" label="Nombre"></app-input>
-        <app-input [(inputValue)]="currentData.percentage" label="Porcenataje"></app-input>
+        <app-input 
+            [(inputValue)]="currentData.name" 
+            label="Nombre"
+            [info]="'Nombre de la tecnológia.'"
+            [error]="errors.name.NotBlank || errors.name.Size"
+        ></app-input>
+        <app-input
+            [(inputValue)]="currentData.percentage"
+            label="Porcenataje"
+            [info]="'Porcentage de habilidad.'"
+            [error]="errors.percentage.NotBlank || errors.percentage.Range"
+        ></app-input>
     </form>
     <div foot class="d-flex justify-content-end gap-2 mt-4">
         <app-btn (click)="onSubmit()" [type]="'submit'">Aceptar</app-btn>
-        <app-btn (click)="onClose()"[danger]="true">Cancelar</app-btn>
+        <app-btn (click)="onClose()" [danger]="true">Cancelar</app-btn>
     </div>
+    <app-file-upload-input (onSelectFile)="onSelectFile($event)" accept="image/svg+xml"></app-file-upload-input>
+    <p class="resolution">Porfavor utilizar imagenes vectoriales (SVG).</p>
 </app-modal>
 
 <style>
@@ -20,7 +32,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        gap: 0 .5em;
+        gap: 0 0.5em;
     }
 
     .description-textarea {
@@ -33,5 +45,9 @@
         align-items: center;
         flex-wrap: nowrap;
         width: 350px;
+    }
+
+    .resolution {
+        color: var(--text-secondary)
     }
 </style>

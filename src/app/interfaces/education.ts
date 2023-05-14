@@ -1,8 +1,9 @@
 export interface education {
     id: number|null;
-    name: String;
-    logo: String|null;
-    description: String;
-    periodFrom: String;
-    periodAt: String;
+    name: string;
+    career: string;
+    logo: string|null;
+    description: string;
+    periodFrom: string;
+    periodAt: string;
 }

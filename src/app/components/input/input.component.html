@@ -3,18 +3,31 @@
         [for]="id"
         [class]="{
             label: true,
-            'label--focus-input': focus || inputValue
+            'label--focus-input': focus || inputValue,
+            'label--error': !!error
         }"
         >{{ label }}</label
     >
     <input
         [id]="id"
-        class="input"
+        [class]="{
+            input: true,
+            'input--error': !!error
+        }"
         [(ngModel)]="inputValue"
         (ngModelChange)="onChanges()"
         (focus)="focus = true"
         (blur)="focus = false"
         [style.width]="width"
+        [style.maxWidth]="width"
+        [type]="type"
     />
-    <p class="text-muted mb-0" *ngIf="!isValid">{{ message }}</p>
+    <p
+        class="text-muted mb-0 ms-1"
+        [class]="{
+            'info--error': !!error
+        }"
+    >
+        {{ !!error ? error : info }}
+    </p>
 </div>

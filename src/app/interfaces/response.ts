@@ -1,4 +1,5 @@
 export interface response<T>{
     data: T[],
-    message: String
+    errors: Object,
+    message: string
 }

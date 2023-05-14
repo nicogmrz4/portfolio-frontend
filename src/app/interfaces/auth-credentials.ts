@@ -1,4 +1,4 @@
 export interface AuthCredentials {
-    username: String;
-    password: String;
+    username: string;
+    password: string;
 }

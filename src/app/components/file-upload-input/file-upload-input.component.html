@@ -1,0 +1,69 @@
+<div class="file-input__container py-4">
+    <div class="img mb-5">
+        <img [src]="url" />
+    </div>
+    <div class="d-flex justify-content-center aling-items-center">
+        <label class="file-input__activator" [for]="id">Seleccionar Logo</label>
+        <input
+            class="file-input d-none"
+            type="file"
+            (change)="selectFile($event)"
+            [id]="id"
+            [accept]="accept || '*'"
+        />
+    </div>
+</div>
+
+<style>
+    .file-input__container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+
+    .file-input__container .img > img {
+        width: 150px;
+    }
+
+    .file-input__container > input {
+        align-self: flex-end;
+    }
+
+    .file-input__activator {
+        outline: none;
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 8px 8px;
+        border-radius: 8px;
+        transition: transform 200ms;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .file-input__activator:hover {
+        transform: translateY(-3px) translateX(3px);
+        z-index: 1;
+    }
+
+    .file-input__activator::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #00000000;
+    }
+
+    .file-input__activator:active {
+        transform: translateY(0) translateX(0);
+    }
+
+    .file-input__activator:active::after {
+        content: "";
+        background: #00000030;
+    }
+</style>

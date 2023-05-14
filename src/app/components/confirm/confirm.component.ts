@@ -9,8 +9,8 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 export class ConfirmComponent implements OnInit, OnChanges {
   @Input() hidden: Boolean = true;
   @Output() hiddenChange = new EventEmitter<Boolean>();
-  @Input() title: String = 'Title';
-  @Input() message: String = '';
+  @Input() title: string = 'Title';
+  @Input() message: string = '';
   @Output() onAcept = new EventEmitter<Boolean>();
   @Output() onCancel = new EventEmitter<Boolean>();
   displayNone: Boolean = true;

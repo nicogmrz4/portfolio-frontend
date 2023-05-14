@@ -9,7 +9,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
     providedIn: 'root',
 })
 export class EducationService {
-    private ENDPOINT = '/academies';
+    private ENDPOINT = '/educations';
 
     constructor(private http: HttpClient) {}
 
@@ -44,5 +44,17 @@ export class EducationService {
                 observe: 'response',
             }
         );
+    }
+
+    
+    uploadEducationLogo(id: any, logo: File): Observable<any> {
+        const url = env.apiUrl + this.ENDPOINT + `/${id}/logo`;
+        
+        let formData: FormData = new FormData();
+        formData.append('logo', logo);
+
+        return this.http.post<HttpResponse<response<education>>>(url, formData, {
+            observe: 'response'
+        });
     }
 }

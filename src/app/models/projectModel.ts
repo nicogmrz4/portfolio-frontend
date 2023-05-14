@@ -5,5 +5,5 @@ export let projectModel: project = {
     image: null,
     title: '',
     description: '',
-    created_at: ''
+    createdAt: ''
 }

@@ -34,4 +34,15 @@ export class ExperienceService {
             observe: 'response'
         });
     }
+
+    uploadExperienceLogo(id: any, logo: File): Observable<any> {
+        const url = env.apiUrl + this.ENDPOINT + `/${id}/logo`;
+        
+        let formData: FormData = new FormData();
+        formData.append('logo', logo);
+
+        return this.http.post<HttpResponse<response<experience>>>(url, formData, {
+            observe: 'response'
+        });
+    }
 }

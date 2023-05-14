@@ -40,12 +40,11 @@
                 [style]="'user-select: none'"
                 [backgroundColor]="'#082749'"
                 [showImage]="true"
-                [imageSrc]="
-                    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/240px-Angular_full_color_logo.svg.png'
-                "
-                [imageHeight]="100"
-                [imageWidth]="100"
             ></circle-progress>
+            <div class="_icon">
+                <img [src]="mediaUrl + '/' + skill.icon ||
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/240px-Angular_full_color_logo.svg.png'">
+            </div>
             <div *ngIf="isAutenticated" class="actions">
                 <fa-icon
                     class="action"
@@ -102,6 +101,7 @@
         border-radius: 50%;
         opacity: 0;
         transition: opacity 200ms;
+        z-index: 10;
     }
 
     .action {
@@ -115,5 +115,23 @@
     }
     .actions:hover {
         opacity: 1;
+    }
+
+    ._icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+        width: 186px;
+        height: 186px;
+        position: absolute;
+        left: 7px;
+        top: 7px;
+        border-radius: 50%;
+        transition: opacity 200ms;
+    }
+
+    ._icon > img {
+        width: 70px;
     }
 </style>

@@ -1,7 +1,17 @@
-import { HttpResponse } from '@angular/common/http';
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import {
+    Component,
+    OnInit,
+    Input,
+    Output,
+    EventEmitter,
+    OnChanges,
+    SimpleChanges,
+} from '@angular/core';
+import { experienceErr } from 'src/app/interfaces/errors/experienceErr';
 import { experience } from 'src/app/interfaces/experience';
 import { response } from 'src/app/interfaces/response';
+import { experienceErrModel } from 'src/app/models/errors/experienceErrModel';
 import { experienceModel } from 'src/app/models/experienceModel';
 import { ExperienceService } from 'src/app/services/experience.service';
 
@@ -17,17 +27,19 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
     @Output() onEditExperience = new EventEmitter<experience>();
     @Input() currentData: experience = Object.assign({}, experienceModel);
     title = '';
+    errors: experienceErr = Object.assign({}, experienceErrModel);
+    logo: File | null = null;
 
     constructor(private service: ExperienceService) {}
 
     ngOnInit(): void {}
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['currentData'].currentValue.id != null) {
-            console.log("Editar")
+        if (this.currentData.id != null) {
+            console.log('Editar');
             this.title = 'Editar experiencia';
         } else {
-            console.log("Añadir")
+            console.log('Añadir');
             this.title = 'Añadir experiencia';
         }
     }
@@ -38,33 +50,74 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
 
     onClose(): void {
         this.hiddenChange.emit(true);
+        this.errors = Object.assign({}, experienceErrModel);
     }
 
     onSubmit() {
         // if id isn't null a item is edited, then make a PUT request
-        if (this.currentData.id != null) this.editExperience(this.currentData.id, this.currentData);
+        if (this.currentData.id != null)
+            this.editExperience(this.currentData.id, this.currentData);
         else this.newExperience();
     }
 
     newExperience() {
-        this.service
-            .createExperience(this.currentData)
-            .subscribe((res: HttpResponse<response<experience>>) => {
-                if (res.status == 201) {
+        this.service.createExperience(this.currentData).subscribe({
+            next: (res: HttpResponse<response<experience>>) => {
+                if (res.status == 201 && this.logo != null) {
+                    const newExperience = res.body?.data[0];
+                    this.onNewUploadExperienceLogo(newExperience?.id, this.logo);
+                } else if(res.status == 201) {
                     const newExperience = res.body?.data[0];
                     this.onNewExperience.emit(newExperience);
                 }
-            });
+            },
+            error: (errRes: HttpErrorResponse) => {
+                this.errors = Object.assign({}, experienceErrModel);
+                this.errors = Object.assign(this.errors, errRes.error.errors);
+            },
+        });
     }
 
     editExperience(id: any, data: experience) {
-        this.service
-            .editExperience(id, data)
-            .subscribe((res: HttpResponse<response<experience>>) => {
-              if (res.status == 200) {
-                const editedExperience = res.body?.data[0];
-                this.onEditExperience.emit(editedExperience);
-              }
-            });
+        this.service.editExperience(id, data).subscribe({
+            next: (res: HttpResponse<response<experience>>) => {
+                if (res.status == 200 && this.logo != null) {
+                    this.onEditUploadExperienceLogo(id, this.logo)
+                } else if(res.status == 200) {
+                    const editedExperience = res.body?.data[0];
+                    this.onEditExperience.emit(editedExperience);
+                }
+            },
+            error: (errRes: HttpErrorResponse) => {
+                this.errors = Object.assign({}, experienceErrModel);
+                this.errors = Object.assign(this.errors, errRes.error.errors);
+            },
+        });
+    }
+
+    onNewUploadExperienceLogo(id: any, logo: File) {
+        this.service.uploadExperienceLogo(id, logo).subscribe({
+            next: (res: HttpResponse<response<experience>>) => {
+                if (res.status == 200) {
+                    const editedExperience = res.body?.data[0];
+                    this.onNewExperience.emit(editedExperience);
+                }
+            },
+        });
+    }
+
+    onEditUploadExperienceLogo(id: any, logo: File) {
+        this.service.uploadExperienceLogo(id, logo).subscribe({
+            next: (res: HttpResponse<response<experience>>) => {
+                if (res.status == 200) {
+                    const editedExperience = res.body?.data[0];
+                    this.onEditExperience.emit(editedExperience);
+                }
+            },
+        });
+    }
+
+    onSelectFile(logo: File) {
+        this.logo = logo;
     }
 }

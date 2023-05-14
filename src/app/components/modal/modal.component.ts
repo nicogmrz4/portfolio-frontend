@@ -13,8 +13,8 @@ export class ModalComponent implements OnInit, OnChanges {
   @Output() close = new EventEmitter<Boolean>();
   displayNone: Boolean = true;
   faXmark = faXmark;
-  @Input() title: String = 'Modal Title';
-  @Input() maxWidth: String = '300px';
+  @Input() title: string = 'Modal Title';
+  @Input() maxWidth: string = '300px';
 
   constructor() { }
 

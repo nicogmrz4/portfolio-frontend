@@ -45,4 +45,15 @@ export class ProjectService {
             }
         );
     }
+
+    uploadProjectImage(id: any, image: File): Observable<any> {
+        const url = env.apiUrl + this.ENDPOINT + `/${id}/image`;
+        
+        let formData: FormData = new FormData();
+        formData.append('image', image);
+
+        return this.http.post<HttpResponse<response<project>>>(url, formData, {
+            observe: 'response'
+        });
+    }
 }

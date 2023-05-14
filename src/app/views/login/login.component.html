@@ -2,7 +2,7 @@
     <div class="login-form p-4">
         <h3 class="text-center">Inicio de sesión del administrador</h3>
         <app-input [(inputValue)]="credentials.username" class="me-0"label="Usuario"></app-input>
-        <app-input [(inputValue)]="credentials.password" class="me-4" label="Contraseña"></app-input>
+        <app-input [(inputValue)]="credentials.password" class="me-4" label="Contraseña" type="password"></app-input>
         <app-btn [block]="true" (click)="login()">Iniciar sesión</app-btn>
     </div>
 </div>
