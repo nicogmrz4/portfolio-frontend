@@ -37,3 +37,7 @@
 ._btn--danger {
     background-color: var(--danger);
 }
+
+._btn--secondary {
+    background-color: var(--secondary);
+}

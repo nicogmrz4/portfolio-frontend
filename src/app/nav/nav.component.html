@@ -15,7 +15,7 @@
             </div>
             <div *ngIf="authServ.isAutenticated(); then thenBlock" ></div>
             <ng-template #thenBlock>
-                <app-btn (click)="logout()">Salir</app-btn>
+                <app-btn [danger]="true" (click)="logout()">Salir</app-btn>
             </ng-template>
         </div>
     </div>
