@@ -14,6 +14,8 @@ import { response } from 'src/app/interfaces/response';
 import { experienceErrModel } from 'src/app/models/errors/experienceErrModel';
 import { experienceModel } from 'src/app/models/experienceModel';
 import { ExperienceService } from 'src/app/services/experience.service';
+import { fileToBase64 } from 'src/app/utils/fileToBase64';
+import { environment as env } from 'src/environments/environment';
 
 @Component({
     selector: 'app-experience-modal',
@@ -29,6 +31,9 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
     title = '';
     errors: experienceErr = Object.assign({}, experienceErrModel);
     logo: File | null = null;
+    logoPreview!: string | ArrayBuffer | null | undefined;
+    inputFileValue!: string;
+    mediaUrl: string = env.mediaUrl
 
     constructor(private service: ExperienceService) {}
 
@@ -45,6 +50,7 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
     }
 
     onOpen(): void {
+        this.resetFile();
         this.hiddenChange.emit(false);
     }
 
@@ -119,5 +125,13 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
 
     onSelectFile(logo: File) {
         this.logo = logo;
+        fileToBase64(logo).onload = (e) => {
+            this.logoPreview = e.target?.result;
+        }
+    }
+
+    resetFile() {
+        this.logoPreview = null;
+        this.logo = null;
     }
 }

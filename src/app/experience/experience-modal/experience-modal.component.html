@@ -4,7 +4,7 @@
     (close)="onClose()"
     (open)="onOpen()"
 >
-    <form>
+    <form id="experienceForm">
         <div class="inputs">
             <app-input
                 [(inputValue)]="currentData.company"
@@ -47,7 +47,14 @@
                 ></app-input>
             </div>
         </div>
-        <app-file-upload-input (onSelectFile)="onSelectFile($event)" accept="image/*"></app-file-upload-input>
+        <div class="load mt-3">
+            <img *ngIf="!!logoPreview" [src]="logoPreview" width="80px" />
+            <img *ngIf="!!currentData.logo && !logoPreview" [src]="mediaUrl + '/' + currentData.logo" width="80px" />
+            <app-file-upload-input
+                (onSelectFile)="onSelectFile($event)"
+                accept="image/*"
+            ></app-file-upload-input>
+        </div>
     </form>
     <div foot class="d-flex justify-content-end gap-2">
         <app-btn (click)="onSubmit()" [type]="'submit'">Aceptar</app-btn>
@@ -73,5 +80,11 @@
         align-items: center;
         flex-wrap: nowrap;
         width: 350px;
+    }
+
+    .load {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 </style>

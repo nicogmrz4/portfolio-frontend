@@ -5,34 +5,46 @@
     (open)="onOpen()"
 >
     <form>
-        <app-input 
-            [(inputValue)]="currentData.name" 
-            label="Nombre"
-            [info]="'Nombre de la tecnológia.'"
-            [error]="errors.name.NotBlank || errors.name.Size"
-        ></app-input>
-        <app-input
-            [(inputValue)]="currentData.percentage"
-            label="Porcenataje"
-            [info]="'Porcentage de habilidad.'"
-            [error]="errors.percentage.NotBlank || errors.percentage.Range"
-        ></app-input>
+        <div>
+            <app-input
+                [(inputValue)]="currentData.name"
+                label="Nombre"
+                [info]="'Nombre de la tecnológia.'"
+                [error]="errors.name.NotBlank || errors.name.Size"
+            ></app-input>
+            <app-input
+                [(inputValue)]="currentData.percentage"
+                label="Porcenataje"
+                [info]="'Porcentage de habilidad.'"
+                [error]="errors.percentage.NotBlank || errors.percentage.Range"
+            ></app-input>
+        </div>
+        <div class="load mt-3">
+            <img *ngIf="!!iconPreview" [src]="iconPreview" width="80px" />
+            <img
+                *ngIf="!!currentData.icon && !iconPreview"
+                [src]="mediaUrl + '/' + currentData.icon"
+                width="80px"
+            />
+            <app-file-upload-input
+                (onSelectFile)="onSelectFile($event)"
+                accept="image/*"
+            ></app-file-upload-input>
+            <p class="resolution">Porfavor utilizar imagenes vectoriales (SVG).</p>
+        </div>
     </form>
     <div foot class="d-flex justify-content-end gap-2 mt-4">
         <app-btn (click)="onSubmit()" [type]="'submit'">Aceptar</app-btn>
         <app-btn (click)="onClose()" [danger]="true">Cancelar</app-btn>
     </div>
-    <app-file-upload-input (onSelectFile)="onSelectFile($event)" accept="image/svg+xml"></app-file-upload-input>
-    <p class="resolution">Porfavor utilizar imagenes vectoriales (SVG).</p>
 </app-modal>
 
 <style>
     form {
-        width: 720px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        gap: 0 0.5em;
+        gap: 0 2em;
     }
 
     .description-textarea {
@@ -48,6 +60,12 @@
     }
 
     .resolution {
-        color: var(--text-secondary)
+        color: var(--text-secondary);
+    }
+
+    .load {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 </style>

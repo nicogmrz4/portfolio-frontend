@@ -1,10 +1,15 @@
 <div class="project">
+    <a [href]="data.url" class="anchor" target="_blank"></a>
     <img class="mb-1" [src]="data.image ? mediaUrl + '/' +  data.image : 'assets/image_not_available.png'" alt="" srcset="" />
     <div class="project__body">
-        <h3 class="title fw-semibold fs-2">{{ data.title }}</h3>
+        <div>
+          <h3 class="title fw-semibold fs-2">
+            {{ data.title }}
+        </h3>
         <p class="description">
             {{ data.description }}
         </p>
+        </div>
         <span class="date text-muted mb-2">{{ data.createdAt }}</span>
       </div>
       <div *ngIf="isAutenticated" class="actions">
@@ -51,6 +56,7 @@
   .project__body .title {
     font-size: 2em;
     font-weight: 100;
+    word-wrap: break-word;
   }
 
   .project__body .description {
@@ -60,6 +66,12 @@
 
   .project__body .date {
     align-self: flex-end;
+  }
+
+  .anchor {
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
 
   .actions {

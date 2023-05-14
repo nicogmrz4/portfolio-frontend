@@ -13,6 +13,8 @@ import { response } from 'src/app/interfaces/response';
 import { educationModel } from 'src/app/models/educationModel';
 import { educationErrModel } from 'src/app/models/errors/educationErrModel';
 import { EducationService } from 'src/app/services/education.service';
+import { fileToBase64 } from 'src/app/utils/fileToBase64';
+import { environment as env } from 'src/environments/environment';
 
 @Component({
     selector: 'app-education-modal',
@@ -28,6 +30,9 @@ export class EducationModalComponent implements OnInit {
     title = '';
     errors: educationErr = Object.assign({}, educationErrModel);
     logo: File | null = null;
+    logoPreview!: string | ArrayBuffer | null | undefined;
+    inputFileValue!: string;
+    mediaUrl: string = env.mediaUrl
 
     constructor(private service: EducationService) {}
 
@@ -44,6 +49,7 @@ export class EducationModalComponent implements OnInit {
     }
 
     onOpen(): void {
+        this.resetFile()
         this.hiddenChange.emit(false);
     }
 
@@ -120,5 +126,13 @@ export class EducationModalComponent implements OnInit {
 
     onSelectFile(logo: File) {
         this.logo = logo;
+        fileToBase64(logo).onload = (e) => {
+            this.logoPreview = e.target?.result;
+        }
+    }
+
+    resetFile() {
+        this.logoPreview = null;
+        this.logo = null;
     }
 }

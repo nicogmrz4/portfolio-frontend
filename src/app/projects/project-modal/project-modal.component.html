@@ -13,6 +13,14 @@
                 [error]="errors.title.NotBlank || errors.title.Size"
             ></app-input>
             <app-input
+                [(inputValue)]="currentData.url"
+                label="URL"
+                [info]="'URL del sitio o repositorio del proyecto.'"
+                [error]="
+                    errors.url.NotBlank || errors.url.Pattern || errors.url.Size
+                "
+            ></app-input>
+            <app-input
                 [(inputValue)]="currentData.createdAt"
                 label="Fecha de creación"
                 [info]="'Fecha de publicación'"
@@ -27,7 +35,14 @@
                 [error]="errors.description.NotBlank || errors.description.Size"
             ></app-textarea>
         </div>
-        <app-file-upload-input (onSelectFile)="onSelectFile($event)" accept="image/*"></app-file-upload-input>
+        <div class="load mt-3">
+            <img *ngIf="!!imagePreview" [src]="imagePreview" width="250px" />
+            <img *ngIf="!!currentData.image && !imagePreview" [src]="mediaUrl + '/' + currentData.image" width="250px" />
+            <app-file-upload-input
+                (onSelectFile)="onSelectFile($event)"
+                accept="image/*"
+            ></app-file-upload-input>
+        </div>
     </form>
     <div foot class="d-flex justify-content-end gap-2">
         <app-btn (click)="onSubmit()" [type]="'submit'">Aceptar</app-btn>

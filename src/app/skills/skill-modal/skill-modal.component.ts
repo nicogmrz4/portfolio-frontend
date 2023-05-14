@@ -13,6 +13,8 @@ import { skill } from 'src/app/interfaces/skill';
 import { skillErrModel } from 'src/app/models/errors/skillErrModel';
 import { skillModel } from 'src/app/models/skillModel';
 import { SkillService } from 'src/app/services/skill.service';
+import { fileToBase64 } from 'src/app/utils/fileToBase64';
+import { environment as env } from 'src/environments/environment';
 
 @Component({
     selector: 'app-skill-modal',
@@ -28,7 +30,9 @@ export class SkillModalComponent implements OnInit {
     title = '';
     errors: skillErr = Object.assign({}, skillErrModel);
     icon: File | null = null;
-
+    iconPreview!: string | ArrayBuffer | null | undefined;
+    inputFileValue!: string;
+    mediaUrl: string = env.mediaUrl
 
     constructor(private service: SkillService) {}
 
@@ -45,6 +49,7 @@ export class SkillModalComponent implements OnInit {
     }
 
     onOpen(): void {
+        this.resetFile();
         this.hiddenChange.emit(false);
     }
 
@@ -122,5 +127,13 @@ export class SkillModalComponent implements OnInit {
 
     onSelectFile(icon: File) {
         this.icon = icon;
+        fileToBase64(icon).onload = (e) => {
+            this.iconPreview = e.target?.result;
+        }
+    }
+
+    resetFile() {
+        this.iconPreview = null;
+        this.icon = null;
     }
 }

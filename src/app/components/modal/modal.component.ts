@@ -29,7 +29,6 @@ export class ModalComponent implements OnInit, OnChanges {
     }
 
     if (this.hidden == true) {
-      this.close.emit();
     }
   }
 
@@ -41,6 +40,7 @@ export class ModalComponent implements OnInit, OnChanges {
     // On close
     if (e.target.classList.contains('layer')) {
       this.displayNone = true;
+      this.close.emit();
     }
 
   }

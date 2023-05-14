@@ -34,27 +34,5 @@ export class InputComponent implements OnInit {
 
   onChanges() {
     this.inputValueChange.emit(this.inputValue);
-    this.validate();
-  }
-
-  validate() {
-    if (this.minLen != null && this.inputValue.length < this.minLen) {
-      this.isValid = false;
-      this.isValidChange.emit(false);
-      this.message = `Debe introducir ${this.minLen} o más caracteres.`
-
-      return;
-    }
-    
-    if (this.maxLen != null && this.inputValue.length > this.maxLen) {
-      this.isValid = false;
-      this.isValidChange.emit(false);
-      this.message = `Debe introducir ${this.maxLen} o menos caracteres.`
-      
-      return;
-    }
-
-    this.isValid = true;
-    this.isValidChange.emit(true);
   }
 }

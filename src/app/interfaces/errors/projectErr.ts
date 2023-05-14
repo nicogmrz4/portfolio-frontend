@@ -1,4 +1,9 @@
 export interface projectErr {
+    url: {
+        NotBlank: string,
+        Size: string,
+        Pattern: string
+    },
     title: {
         NotBlank: string,
         Size: string

@@ -13,6 +13,8 @@ import { response } from 'src/app/interfaces/response';
 import { projectErrModel } from 'src/app/models/errors/projectErrModel';
 import { projectModel } from 'src/app/models/projectModel';
 import { ProjectService } from 'src/app/services/project.service';
+import { fileToBase64 } from 'src/app/utils/fileToBase64';
+import { environment as env } from 'src/environments/environment';
 
 @Component({
     selector: 'app-project-modal',
@@ -28,6 +30,9 @@ export class ProjectModalComponent implements OnInit {
     title = '';
     errors: projectErr = Object.assign({}, projectErrModel);
     image: File | null = null;
+    imagePreview!: string | ArrayBuffer | null | undefined;
+    inputFileValue!: string;
+    mediaUrl: string = env.mediaUrl
 
     constructor(private service: ProjectService) {}
 
@@ -44,6 +49,7 @@ export class ProjectModalComponent implements OnInit {
     }
 
     onOpen(): void {
+        this.resetFile();
         this.hiddenChange.emit(false);
     }
 
@@ -121,5 +127,13 @@ export class ProjectModalComponent implements OnInit {
 
     onSelectFile(image: File) {
         this.image = image;
+        fileToBase64(image).onload = (e) => {
+            this.imagePreview = e.target?.result;
+        }
+    }
+
+    resetFile() {
+        this.imagePreview = null;
+        this.image = null;
     }
 }
