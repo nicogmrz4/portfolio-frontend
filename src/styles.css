@@ -30,6 +30,10 @@ p {
 
 }
 
+._text-primary {
+    color: var(--text-primary);
+}
+
 .bg-primary {
     background: var(--secondary)!important;
 }
