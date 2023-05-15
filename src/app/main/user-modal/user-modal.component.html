@@ -3,6 +3,7 @@
     [(hidden)]="hidden"
     (close)="onClose()"
     (open)="onOpen()"
+    [loading]="loading"
 >
     <form class="d-flex gap-5">
         <div class="load mt-3">
@@ -31,7 +32,7 @@
         </div>
     </form>
     <div foot class="d-flex justify-content-end gap-2">
-        <app-btn (click)="onSubmit()" [type]="'submit'">Aceptar</app-btn>
+        <app-btn *ngIf="!!profileFile || !!backgroundFile" (click)="onSubmit()" [type]="'submit'">Aceptar</app-btn>
         <app-btn (click)="onClose()" [danger]="true">Cancelar</app-btn>
     </div>
 </app-modal>

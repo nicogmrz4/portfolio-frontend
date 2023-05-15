@@ -32,7 +32,8 @@ export class EducationModalComponent implements OnInit {
     logo: File | null = null;
     logoPreview!: string | ArrayBuffer | null | undefined;
     inputFileValue!: string;
-    mediaUrl: string = env.mediaUrl
+    mediaUrl: string = env.mediaUrl;
+    loading: Boolean = false;
 
     constructor(private service: EducationService) {}
 
@@ -60,6 +61,7 @@ export class EducationModalComponent implements OnInit {
 
     onSubmit() {
         // if id isn't null a item is edited, then make a PUT request
+        this.loading = true;
         if (this.currentData.id != null)
             this.editEducation(this.currentData.id, this.currentData);
         else this.newEducation();
@@ -74,11 +76,13 @@ export class EducationModalComponent implements OnInit {
                 } else if(res.status == 201) {
                     const editedEducation = res.body?.data[0];
                     this.onNewEducation.emit(editedEducation);
+                    this.loading = false;
                 }
             },
             error: (errRes: HttpErrorResponse) => {
                 this.errors = Object.assign({}, educationErrModel);
                 this.errors = Object.assign(this.errors, errRes.error.errors);
+                this.loading = false;
             },
         });
     }
@@ -91,11 +95,13 @@ export class EducationModalComponent implements OnInit {
                 } else if(res.status == 200) {
                     const editedExperience = res.body?.data[0];
                     this.onEditEducation.emit(editedExperience);
+                    this.loading = false;
                 }
             },
             error: (errRes: HttpErrorResponse) => {
                 this.errors = Object.assign({}, educationErrModel);
                 this.errors = Object.assign(this.errors, errRes.error.errors);
+                this.loading = false;
             },
         });
     }
@@ -109,6 +115,7 @@ export class EducationModalComponent implements OnInit {
                     const editedEducation = res.body?.data[0];
                     this.onNewEducation.emit(editedEducation);
                 }
+                this.loading = false;
             },
         });
     }
@@ -120,6 +127,7 @@ export class EducationModalComponent implements OnInit {
                     const editedEducation = res.body?.data[0];
                     this.onEditEducation.emit(editedEducation);
                 }
+                this.loading = false;
             },
         });
     }

@@ -34,6 +34,8 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
     logoPreview!: string | ArrayBuffer | null | undefined;
     inputFileValue!: string;
     mediaUrl: string = env.mediaUrl
+    loading: Boolean = false;
+
 
     constructor(private service: ExperienceService) {}
 
@@ -61,6 +63,7 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
 
     onSubmit() {
         // if id isn't null a item is edited, then make a PUT request
+        this.loading = true;
         if (this.currentData.id != null)
             this.editExperience(this.currentData.id, this.currentData);
         else this.newExperience();
@@ -75,11 +78,13 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
                 } else if(res.status == 201) {
                     const newExperience = res.body?.data[0];
                     this.onNewExperience.emit(newExperience);
+                    this.loading = false;
                 }
             },
             error: (errRes: HttpErrorResponse) => {
                 this.errors = Object.assign({}, experienceErrModel);
                 this.errors = Object.assign(this.errors, errRes.error.errors);
+                this.loading = false;
             },
         });
     }
@@ -92,11 +97,13 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
                 } else if(res.status == 200) {
                     const editedExperience = res.body?.data[0];
                     this.onEditExperience.emit(editedExperience);
+                    this.loading = false;
                 }
             },
             error: (errRes: HttpErrorResponse) => {
                 this.errors = Object.assign({}, experienceErrModel);
                 this.errors = Object.assign(this.errors, errRes.error.errors);
+                this.loading = false;
             },
         });
     }
@@ -108,6 +115,7 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
                     const editedExperience = res.body?.data[0];
                     this.onNewExperience.emit(editedExperience);
                 }
+                this.loading = false;
             },
         });
     }
@@ -119,6 +127,7 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
                     const editedExperience = res.body?.data[0];
                     this.onEditExperience.emit(editedExperience);
                 }
+                this.loading = false;
             },
         });
     }

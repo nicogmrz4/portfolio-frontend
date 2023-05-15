@@ -1,8 +1,10 @@
 nav {
     width: 100%;
     position: fixed;
-    z-index: 10;
+    z-index: 20;
     background: var(--primary);
+    height: 75px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 nav .container {

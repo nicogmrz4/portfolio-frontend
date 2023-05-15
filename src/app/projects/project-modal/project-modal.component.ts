@@ -32,7 +32,9 @@ export class ProjectModalComponent implements OnInit {
     image: File | null = null;
     imagePreview!: string | ArrayBuffer | null | undefined;
     inputFileValue!: string;
-    mediaUrl: string = env.mediaUrl
+    mediaUrl: string = env.mediaUrl;
+    loading: Boolean = false;
+
 
     constructor(private service: ProjectService) {}
 
@@ -59,6 +61,7 @@ export class ProjectModalComponent implements OnInit {
     }
 
     onSubmit() {
+        this.loading = true;
         // if id isn't null a item is edited, then make a PUT request
         if (this.currentData.id != null)
             this.editProject(this.currentData.id, this.currentData);
@@ -74,11 +77,13 @@ export class ProjectModalComponent implements OnInit {
                 } else if (res.status == 201) {
                     const newProject = res.body?.data[0];
                     this.onNewProject.emit(newProject);
+                    this.loading = false;
                 }
             },
             error: (resErr: HttpErrorResponse) => {
                 this.errors = Object.assign({}, projectErrModel);
                 this.errors = Object.assign(this.errors, resErr.error.errors);
+                this.loading = false;
             },
         });
     }
@@ -91,11 +96,13 @@ export class ProjectModalComponent implements OnInit {
                 } else if (res.status == 200) {
                     const editedProject = res.body?.data[0];
                     this.onEditProject.emit(editedProject);
+                    this.loading = false;
                 }
             },
             error: (resErr: HttpErrorResponse) => {
                 this.errors = Object.assign({}, projectErrModel);
                 this.errors = Object.assign(this.errors, resErr.error.errors);
+                this.loading = false;
             },
         });
     }
@@ -110,6 +117,7 @@ export class ProjectModalComponent implements OnInit {
                     const editedProject = res.body?.data[0];
                     this.onNewProject.emit(editedProject);
                 }
+                this.loading = false;
             },
         });
     }
@@ -121,6 +129,7 @@ export class ProjectModalComponent implements OnInit {
                     const editedProject = res.body?.data[0];
                     this.onEditProject.emit(editedProject);
                 }
+                this.loading = false;
             },
         });
     }

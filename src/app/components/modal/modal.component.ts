@@ -15,6 +15,7 @@ export class ModalComponent implements OnInit, OnChanges {
   faXmark = faXmark;
   @Input() title: string = 'Modal Title';
   @Input() maxWidth: string = '300px';
+  @Input() loading: Boolean = false;
 
   constructor() { }
 

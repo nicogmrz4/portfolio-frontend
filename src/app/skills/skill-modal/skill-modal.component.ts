@@ -32,7 +32,9 @@ export class SkillModalComponent implements OnInit {
     icon: File | null = null;
     iconPreview!: string | ArrayBuffer | null | undefined;
     inputFileValue!: string;
-    mediaUrl: string = env.mediaUrl
+    mediaUrl: string = env.mediaUrl;
+    loading: Boolean = false;
+
 
     constructor(private service: SkillService) {}
 
@@ -59,6 +61,7 @@ export class SkillModalComponent implements OnInit {
     }
 
     onSubmit() {
+        this.loading = true;
         // if id isn't null a item is edited, then make a PUT request
         if (this.currentData.id != null)
             this.editSkill(this.currentData.id, this.currentData);
@@ -74,11 +77,13 @@ export class SkillModalComponent implements OnInit {
                 } else if(res.status == 201) {
                     const newSkill = res.body?.data[0];
                     this.onNewSkill.emit(newSkill);
+                    this.loading = false;
                 }
             },
             error: (res: HttpErrorResponse) => {
                 this.errors = Object.assign({}, skillErrModel);
                 this.errors = Object.assign(this.errors, res.error.errors);
+                this.loading = false;
             },
         });
     }
@@ -91,11 +96,13 @@ export class SkillModalComponent implements OnInit {
                 } else if(res.status == 200) {
                     const editedSkill = res.body?.data[0];
                     this.onEditSkill.emit(editedSkill);
+                    this.loading = false;
                 }
             },
             error: (res: HttpErrorResponse) => {
                 this.errors = Object.assign({}, skillErrModel);
                 this.errors = Object.assign(this.errors, res.error.errors);
+                this.loading = false;
             },
         });
     }
@@ -110,6 +117,7 @@ export class SkillModalComponent implements OnInit {
                     const editedSkill = res.body?.data[0];
                     this.onNewSkill.emit(editedSkill);
                 }
+                this.loading = false;
             },
         });
     }
@@ -121,6 +129,7 @@ export class SkillModalComponent implements OnInit {
                     const editedSkill = res.body?.data[0];
                     this.onEditSkill.emit(editedSkill);
                 }
+                this.loading = false;
             },
         });
     }
