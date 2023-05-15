@@ -33,6 +33,7 @@ import { EducationModalComponent } from './education/education-modal/education-m
 import { SkillModalComponent } from './skills/skill-modal/skill-modal.component';
 import { ProjectModalComponent } from './projects/project-modal/project-modal.component';
 import { FileUploadInputComponent } from './components/file-upload-input/file-upload-input.component';
+import { UserModalComponent } from './main/user-modal/user-modal.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { FileUploadInputComponent } from './components/file-upload-input/file-up
     EducationModalComponent,
     SkillModalComponent,
     ProjectModalComponent,
-    FileUploadInputComponent
+    FileUploadInputComponent,
+    UserModalComponent
   ],
   imports: [
     BrowserModule,

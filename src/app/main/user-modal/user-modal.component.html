@@ -1,0 +1,37 @@
+<app-modal
+    [title]="title"
+    [(hidden)]="hidden"
+    (close)="onClose()"
+    (open)="onOpen()"
+>
+    <form class="d-flex gap-5">
+        <div class="load mt-3">
+            <img *ngIf="!!profilePreview" [src]="profilePreview" width="250px" />
+            <img
+                *ngIf="!!currentData.profile && !profilePreview"
+                [src]="mediaUrl + '/' + currentData.profile"
+                width="250px"
+            />
+            <app-file-upload-input
+                (onSelectFile)="onSelectProfile($event)"
+                accept="image/*"
+            ></app-file-upload-input>
+        </div>
+        <div class="load mt-3">
+            <img *ngIf="!!backgroundPreview" [src]="backgroundPreview" width="250px" />
+            <img
+                *ngIf="!!currentData.background && !backgroundPreview"
+                [src]="mediaUrl + '/' + currentData.background"
+                width="250px"
+            />
+            <app-file-upload-input
+                (onSelectFile)="onSelectBackground($event)"
+                accept="image/*"
+            ></app-file-upload-input>
+        </div>
+    </form>
+    <div foot class="d-flex justify-content-end gap-2">
+        <app-btn (click)="onSubmit()" [type]="'submit'">Aceptar</app-btn>
+        <app-btn (click)="onClose()" [danger]="true">Cancelar</app-btn>
+    </div>
+</app-modal>
