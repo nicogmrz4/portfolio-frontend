@@ -1,14 +1,14 @@
 @import '~animate.css/animate.min.css';
 
 :root {
-    --primary: #2196F3;
+    --primary: #5F8EB4;
     --secondary: #023E8A;
-    --danger: #FF004D;
-    --bg: #051D40;
-    --bg-card: #023E8A;
+    --danger: #E03E61;
+    --bg: #0B375D;
+    --bg-card: #0A2F54;
     --text-primary: white;
     --text-secondary: #0096C7;
-    --header-bg-color: linear-gradient(115deg, #f97794, #6200ff, #3498db);
+    --header-bg-color: linear-gradient(115deg, #E68A9E, #6B26D9, #4C93C2);
     --header-text-color: #1e88e5;
     --card-border-color: rgba(30, 136, 229, 0.4);
     --text-color: #BBDEFB;
