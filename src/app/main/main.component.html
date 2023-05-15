@@ -28,6 +28,7 @@
                 />
             </div>
             <fa-icon
+                *ngIf="isAutenticated"
                 class="editIcon animate__animated"
                 [icon]="faPen"
                 (click)="hiddenUserModal = false"

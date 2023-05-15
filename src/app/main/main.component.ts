@@ -5,6 +5,7 @@ import { user } from '../interfaces/user';
 import { userModel } from '../models/userMode';
 import { response } from '../interfaces/response';
 import { environment as env } from 'src/environments/environment';
+import { AuthService } from '../services/auth.service';
 
 @Component({
     selector: 'app-main',
@@ -18,11 +19,13 @@ export class MainComponent implements OnInit {
     mediaUrl: string = env.mediaUrl
     auxProfile!: any;
     auxBackground!: any;
+    isAutenticated: Boolean = false;
 
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService,  private AuthServ: AuthService) {}
 
     ngOnInit(): void {
         this.loadProfileAndBackground();
+        this.isAutenticated = this.AuthServ.isAutenticated();
     }
 
     loadProfileAndBackground() {
