@@ -42,10 +42,8 @@ export class SkillModalComponent implements OnInit {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (this.currentData.id != null) {
-            console.log('Editar');
             this.title = 'Editar educación';
         } else {
-            console.log('Añadir');
             this.title = 'Añadir educación';
         }
     }
@@ -109,10 +107,8 @@ export class SkillModalComponent implements OnInit {
 
     
     onNewUploadSkillLogo(id: any, icon: File) {
-        console.log(id, icon);
         this.service.uploadSkillIcon(id, icon).subscribe({
             next: (res: HttpResponse<response<skill>>) => {
-                console.log("Ok");
                 if (res.status == 200) {
                     const editedSkill = res.body?.data[0];
                     this.onNewSkill.emit(editedSkill);

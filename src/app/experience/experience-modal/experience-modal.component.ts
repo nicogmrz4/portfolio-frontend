@@ -43,10 +43,8 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (this.currentData.id != null) {
-            console.log('Editar');
             this.title = 'Editar experiencia';
         } else {
-            console.log('Añadir');
             this.title = 'Añadir experiencia';
         }
     }

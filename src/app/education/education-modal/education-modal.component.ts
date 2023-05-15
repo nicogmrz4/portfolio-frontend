@@ -41,10 +41,8 @@ export class EducationModalComponent implements OnInit {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (this.currentData.id != null) {
-            console.log('Editar');
             this.title = 'Editar educación';
         } else {
-            console.log('Añadir');
             this.title = 'Añadir educación';
         }
     }
@@ -107,10 +105,8 @@ export class EducationModalComponent implements OnInit {
     }
 
     onNewUploadEducationLogo(id: any, logo: File) {
-        console.log(id, logo);
         this.service.uploadEducationLogo(id, logo).subscribe({
             next: (res: HttpResponse<response<education>>) => {
-                console.log("Ok");
                 if (res.status == 200) {
                     const editedEducation = res.body?.data[0];
                     this.onNewEducation.emit(editedEducation);

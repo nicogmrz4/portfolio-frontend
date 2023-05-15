@@ -37,7 +37,6 @@ export class MainComponent implements OnInit {
     }
 
     changeProfile(profile: any) {
-        console.log(profile);
         this.auxProfile = profile;
     }
 

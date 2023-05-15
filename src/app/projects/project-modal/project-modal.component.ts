@@ -42,10 +42,8 @@ export class ProjectModalComponent implements OnInit {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (this.currentData.id != null) {
-            console.log('Editar');
             this.title = 'Editar educación';
         } else {
-            console.log('Añadir');
             this.title = 'Añadir educación';
         }
     }
@@ -109,10 +107,8 @@ export class ProjectModalComponent implements OnInit {
 
     
     onNewUploadProjectImage(id: any, image: File) {
-        console.log(id, image);
         this.service.uploadProjectImage(id, image).subscribe({
             next: (res: HttpResponse<response<project>>) => {
-                console.log("Ok");
                 if (res.status == 200) {
                     const editedProject = res.body?.data[0];
                     this.onNewProject.emit(editedProject);
