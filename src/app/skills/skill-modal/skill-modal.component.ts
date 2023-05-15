@@ -64,16 +64,16 @@ export class SkillModalComponent implements OnInit {
         this.loading = true;
         // if id isn't null a item is edited, then make a PUT request
         if (this.currentData.id != null)
-            this.editSkill(this.currentData.id, this.currentData);
-        else this.newSkill();
+            this.editSkill(this.currentData.id, this.currentData, this.icon);
+        else this.newSkill(this.icon);
     }
 
-    newSkill() {
+    newSkill(icon: File | null) {
         this.service.createSkill(this.currentData).subscribe({
             next: (res: HttpResponse<response<skill>>) => {
-                if (res.status == 201 && this.icon != null) {
+                if (res.status == 201 && icon != null) {
                     const newSkill = res.body?.data[0];
-                    this.onNewUploadSkillLogo(newSkill?.id, this.icon);
+                    this.onNewUploadSkillLogo(newSkill?.id, icon);
                 } else if(res.status == 201) {
                     const newSkill = res.body?.data[0];
                     this.onNewSkill.emit(newSkill);
@@ -88,11 +88,11 @@ export class SkillModalComponent implements OnInit {
         });
     }
 
-    editSkill(id: any, data: skill) {
+    editSkill(id: any, data: skill, icon: File | null) {
         this.service.editSkill(id, data).subscribe({
             next: (res: HttpResponse<response<skill>>) => {
-                if (res.status == 200 && this.icon != null) {
-                    this.onEditUploadSkillLogo(id, this.icon)
+                if (res.status == 200 && icon != null) {
+                    this.onEditUploadSkillLogo(id, icon)
                 } else if(res.status == 200) {
                     const editedSkill = res.body?.data[0];
                     this.onEditSkill.emit(editedSkill);

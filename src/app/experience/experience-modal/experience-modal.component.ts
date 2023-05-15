@@ -34,7 +34,7 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
     logoPreview!: string | ArrayBuffer | null | undefined;
     inputFileValue!: string;
     mediaUrl: string = env.mediaUrl
-    loading: Boolean = false;
+    loading: boolean = false;
 
 
     constructor(private service: ExperienceService) {}
@@ -65,16 +65,16 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
         // if id isn't null a item is edited, then make a PUT request
         this.loading = true;
         if (this.currentData.id != null)
-            this.editExperience(this.currentData.id, this.currentData);
-        else this.newExperience();
+        this.editExperience(this.currentData.id, this.currentData, this.logo);
+        else this.newExperience(this.logo);
     }
 
-    newExperience() {
+    newExperience(logo: File | null) {
         this.service.createExperience(this.currentData).subscribe({
             next: (res: HttpResponse<response<experience>>) => {
-                if (res.status == 201 && this.logo != null) {
+                if (res.status == 201 && logo != null) {
                     const newExperience = res.body?.data[0];
-                    this.onNewUploadExperienceLogo(newExperience?.id, this.logo);
+                    this.onNewUploadExperienceLogo(newExperience?.id, logo);
                 } else if(res.status == 201) {
                     const newExperience = res.body?.data[0];
                     this.onNewExperience.emit(newExperience);
@@ -88,12 +88,13 @@ export class ExperienceModalComponent implements OnInit, OnChanges {
             },
         });
     }
-
-    editExperience(id: any, data: experience) {
+    
+    editExperience(id: any, data: experience, logo: File | null) {
+        
         this.service.editExperience(id, data).subscribe({
             next: (res: HttpResponse<response<experience>>) => {
-                if (res.status == 200 && this.logo != null) {
-                    this.onEditUploadExperienceLogo(id, this.logo)
+                if (res.status == 200 && logo != null) {
+                    this.onEditUploadExperienceLogo(id, logo)
                 } else if(res.status == 200) {
                     const editedExperience = res.body?.data[0];
                     this.onEditExperience.emit(editedExperience);

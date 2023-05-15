@@ -64,16 +64,16 @@ export class ProjectModalComponent implements OnInit {
         this.loading = true;
         // if id isn't null a item is edited, then make a PUT request
         if (this.currentData.id != null)
-            this.editProject(this.currentData.id, this.currentData);
-        else this.newProject();
+            this.editProject(this.currentData.id, this.currentData, this.image);
+        else this.newProject(this.image);
     }
 
-    newProject() {
+    newProject(image: File | null) {
         this.service.createProject(this.currentData).subscribe({
             next: (res: HttpResponse<response<project>>) => {
-                if (res.status == 201 && this.image != null) {
+                if (res.status == 201 && image != null) {
                     const newProject = res.body?.data[0];
-                    this.onNewUploadProjectImage(newProject?.id, this.image);
+                    this.onNewUploadProjectImage(newProject?.id, image);
                 } else if (res.status == 201) {
                     const newProject = res.body?.data[0];
                     this.onNewProject.emit(newProject);
@@ -88,11 +88,11 @@ export class ProjectModalComponent implements OnInit {
         });
     }
 
-    editProject(id: any, data: project) {
+    editProject(id: any, data: project, image: File | null) {
         this.service.editProject(id, data).subscribe({
             next: (res: HttpResponse<response<project>>) => {
-                if (res.status == 200 && this.image != null) {
-                    this.onEditUploadProjectImage(id, this.image);
+                if (res.status == 200 && image != null) {
+                    this.onEditUploadProjectImage(id, image);
                 } else if (res.status == 200) {
                     const editedProject = res.body?.data[0];
                     this.onEditProject.emit(editedProject);

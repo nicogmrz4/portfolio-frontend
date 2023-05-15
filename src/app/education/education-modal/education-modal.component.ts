@@ -63,16 +63,16 @@ export class EducationModalComponent implements OnInit {
         // if id isn't null a item is edited, then make a PUT request
         this.loading = true;
         if (this.currentData.id != null)
-            this.editEducation(this.currentData.id, this.currentData);
-        else this.newEducation();
+            this.editEducation(this.currentData.id, this.currentData, this.logo);
+        else this.newEducation(this.logo);
     }
 
-    newEducation() {
+    newEducation(logo: File | null) {
         this.service.createEducation(this.currentData).subscribe({
             next: (res: HttpResponse<response<education>>) => {
-                if (res.status == 201 && this.logo != null) {
+                if (res.status == 201 && logo != null) {
                     const newEducation = res.body?.data[0];
-                    this.onNewUploadEducationLogo(newEducation?.id, this.logo);
+                    this.onNewUploadEducationLogo(newEducation?.id, logo);
                 } else if(res.status == 201) {
                     const editedEducation = res.body?.data[0];
                     this.onNewEducation.emit(editedEducation);
@@ -87,11 +87,11 @@ export class EducationModalComponent implements OnInit {
         });
     }
 
-    editEducation(id: any, data: education) {
+    editEducation(id: any, data: education, logo: File | null) {
         this.service.editEducation(id, data).subscribe({
             next: (res: HttpResponse<response<education>>) => {
-                if (res.status == 200 && this.logo != null) {
-                    this.onEditUploadEducationLogo(id, this.logo)
+                if (res.status == 200 && logo != null) {
+                    this.onEditUploadEducationLogo(id, logo)
                 } else if(res.status == 200) {
                     const editedExperience = res.body?.data[0];
                     this.onEditEducation.emit(editedExperience);

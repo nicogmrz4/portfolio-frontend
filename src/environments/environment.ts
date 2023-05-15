@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/api',
-  mediaUrl: 'http://localhost:8080/media'
+  apiUrl: 'https://portfolio-backend-production-33c1.up.railway.app/api',
+  mediaUrl: 'https://portfolio-backend-production-33c1.up.railway.app/media'
 };
 
 /*
