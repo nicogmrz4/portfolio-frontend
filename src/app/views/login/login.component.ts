@@ -1,4 +1,4 @@
-import { HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthCredentials } from 'src/app/interfaces/auth-credentials';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
     username: '',
     password: ''
   }
+  hiddenCredentialsErr: Boolean = true;
 
   constructor(private services: AuthService, private router: Router) { }
 
@@ -22,10 +23,14 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.services.login(this.credentials).subscribe((res: HttpResponse<any>) => {
-      console.log(res);
-      if (res.status === 200) {
-        this.router.navigate([""]);
+    this.services.login(this.credentials).subscribe({
+      next: (res: HttpResponse<any>) => {
+        if (res.status === 200) {
+          this.router.navigate([""]);
+        } 
+      },
+      error: (resErr: HttpErrorResponse) => {
+        this.hiddenCredentialsErr = false;
       }
     })
   }

@@ -5,6 +5,7 @@
         <app-input [(inputValue)]="credentials.password" class="me-4" label="Contraseña" type="password"></app-input>
         <app-btn [block]="true" (click)="login()">Iniciar sesión</app-btn>
     </div>
+    <app-confirm [(hidden)]="hiddenCredentialsErr" title="¡Credenciales incorrectas!"></app-confirm>
 </div>
 
 <style>
