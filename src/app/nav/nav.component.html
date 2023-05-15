@@ -1,19 +1,35 @@
 <nav>
     <div class="container">
-        <img class="ap-logo" src="assets/ap_logo.png" alt="Logo Argentina programa">
+        <img
+            class="ap-logo"
+            src="assets/ap_logo.png"
+            alt="Logo Argentina programa"
+        />
         <div class="nav__left-side">
             <div class="social-media">
-                <div class="social-media__item">
-                    <fa-icon class="icon" [icon]="faFacebookF"></fa-icon>
-                </div>
-                <div class="social-media__item">
-                    <fa-icon class="icon" [icon]="faLinkedin"></fa-icon>
-                </div>    
-                <div class="social-media__item">
+                <a
+                    href="https://www.instagram.com/nicogmerz4/"
+                    target="_blank"
+                    class="social-media__item"
+                >
+                    <fa-icon class="icon" [icon]="faInstagram"></fa-icon>
+                </a>
+                <a
+                    href="https://github.com/nicogmrz4"
+                    target="_blank"
+                    class="social-media__item"
+                >
+                    <fa-icon class="icon" [icon]="faGithub"></fa-icon>
+                </a>
+                <a
+                    href="https://twitter.com/Nicolas17087942"
+                    target="_blank"
+                    class="social-media__item"
+                >
                     <fa-icon class="icon" [icon]="faTwitter"></fa-icon>
-                </div>
+                </a>
             </div>
-            <div *ngIf="authServ.isAutenticated(); then thenBlock" ></div>
+            <div *ngIf="authServ.isAutenticated(); then thenBlock"></div>
             <ng-template #thenBlock>
                 <app-btn [danger]="true" (click)="logout()">Salir</app-btn>
             </ng-template>

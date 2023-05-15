@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faFacebookF , faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faInstagram , faGithub , faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -8,8 +8,8 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  faFacebookF = faFacebookF;
-  faLinkedin = faLinkedinIn;
+  faInstagram = faInstagram;
+  faGithub = faGithub;
   faTwitter = faTwitter;
   constructor(public authServ: AuthService) { }
 

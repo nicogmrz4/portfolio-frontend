@@ -29,6 +29,10 @@ nav .container {
     color: white;
 }
 
+.social-media__item {
+    color: white;
+}
+
 .social-media__item > .icon {
     font-size: 2em;
     transition: color 200ms;
