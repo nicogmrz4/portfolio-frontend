@@ -9,7 +9,6 @@ export class FileUploadInputComponent implements OnInit {
     @Output() onSelectFile: EventEmitter<File> = new EventEmitter<File>();
     id!: string;
     @Input() accept!: String;
-
     constructor() {}
 
     ngOnInit(): void {

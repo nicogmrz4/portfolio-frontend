@@ -34,6 +34,7 @@ import { SkillModalComponent } from './skills/skill-modal/skill-modal.component'
 import { ProjectModalComponent } from './projects/project-modal/project-modal.component';
 import { FileUploadInputComponent } from './components/file-upload-input/file-upload-input.component';
 import { UserModalComponent } from './main/user-modal/user-modal.component';
+import { NgOptimizedImage } from '@angular/common'
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { UserModalComponent } from './main/user-modal/user-modal.component';
       innerStrokeColor: "#C7E596",
       animationDuration: 300,
     }),
-    HttpClientModule
+    HttpClientModule,
+    NgOptimizedImage
   ],
   providers: [
     {

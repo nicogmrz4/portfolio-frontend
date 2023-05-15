@@ -1,6 +1,9 @@
 <div class="file-input__container py-4">
     <div class="d-flex justify-content-center aling-items-center">
-        <label class="file-input__activator" [for]="id">Seleccionar Logo</label>
+        <label class="file-input__activator" [for]="id">
+            <ng-content>
+            </ng-content>
+        </label>
         <input
             class="file-input d-none"
             type="file"

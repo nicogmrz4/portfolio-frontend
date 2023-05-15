@@ -15,7 +15,7 @@
             <app-file-upload-input
                 (onSelectFile)="onSelectProfile($event)"
                 accept="image/*"
-            ></app-file-upload-input>
+            >Seleccionar foto de perfil</app-file-upload-input>
         </div>
         <div class="load mt-3">
             <img *ngIf="!!backgroundPreview" [src]="backgroundPreview" width="250px" />
@@ -27,7 +27,7 @@
             <app-file-upload-input
                 (onSelectFile)="onSelectBackground($event)"
                 accept="image/*"
-            ></app-file-upload-input>
+            >Seleccionar fondo</app-file-upload-input>
         </div>
     </form>
     <div foot class="d-flex justify-content-end gap-2">
